@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,11 +21,12 @@
 				if(isset($_GET['mode'])){
 					if($_GET['mode']=='users' ){
 						require_once('../connect.php');
-						$result = mysql_query("SELECT * FROM users");
+						$query1="SELECT * FROM users";
+						$result = $link->query($query1);
 
 						echo "<h1>Userlist</h1>";
 						
-						while($row = mysql_fetch_array($result)){
+						while($row = mysqli_fetch_array($result)){
 							echo "<a href='./?mode=users&id="
 							.$row['userid']."'><div";
 							if(isset($_GET['id'])&& $row['userid']==$_GET['id'])echo " class='borderleft'";
@@ -51,8 +49,8 @@
 							
 
 
-							$result = mysql_query("SELECT * FROM users WHERE userid=$id");
-							while($row = mysql_fetch_array($result)){
+							$result = $link->query("SELECT * FROM users WHERE userid=$id");
+							while($row = mysqli_fetch_array($result)){
 
 
 
@@ -83,7 +81,7 @@
 										$orderidupdate=$_POST['orderid'];
 
 										$query="UPDATE orders SET status='".$statusupdate."' WHERE orderid=$orderidupdate";
-										$update = mysql_query($query);
+										$update = $link->query($query);
 
 										if (!$update) {
 										    $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -95,16 +93,16 @@
 									}
 
 
-								$result = mysql_query("SELECT * FROM orders WHERE userid=$id");
-								while($row = mysql_fetch_array($result)){
+								$result = $link->query("SELECT * FROM orders WHERE userid=$id");
+								while($row = mysqli_fetch_array($result)){
 									echo "<tr>";
 									echo "<td>".$row['orderid']."</td>";
 									//give item description
 									$item=$row['itemid'];
 									$status=$row['status'];
 									$orderid=$row['orderid'];
-									$result2 = mysql_query("SELECT * FROM items WHERE itemid=$item");
-									while($row2 = mysql_fetch_assoc($result2)){
+									$result2 = $link->query("SELECT * FROM items WHERE itemid=$item");
+									while($row2 = mysqli_fetch_assoc($result2)){
 										echo "<td>".$row2['description']."</td>";
 
 

@@ -2,16 +2,16 @@
 	if( isset($_POST['username']) && isset($_POST['password']) ){
 		if(!empty($_POST['username']) && !empty($_POST['password']) ){
 				require_once('connect.php');
-				$username=$_POST['username'];
-				$password=$_POST['password'];
-
-				$result = mysql_query("SELECT password FROM users WHERE email='$username'");
+				$username=mysqli_real_escape_string($_POST['username']);
+				$password=mysqli_real_escape_string($_POST['password']);
+				$query="SELECT password FROM users WHERE email='$username'";
+				$result = $link->query($query);
 				if (!$result) {
     $message  = 'Invalid query: ' . mysql_error() . "\n";
     //$message .= 'Whole query: ' . $query;
     die($message);
 }
-				while($row = mysql_fetch_assoc($result)){
+				while($row = mysqli_fetch_array($result)){
 
 				//echo "<pre>".print_r($row)."</pre>";
 
