@@ -41,28 +41,22 @@
 
 		<div id="dashright">
 			<?php
-				if(isset($_GET['mode']) && $_GET['mode']=='users'){
-						if( isset($_GET['id']) ){
+				if(isset($_GET['mode']) && $_GET['mode']=='users' && isset($_GET['id']) ){
+						
 							$id=$_GET['id'];
 							$orderidupdate="";
 							require_once('../connect.php');
-							
-
-
+							//get basic user data
 							$result = $link->query("SELECT * FROM users WHERE userid=$id");
 							while($row = mysqli_fetch_array($result)){
-
-
-
-
-								echo "<h3>Customer</h3>";
-								
+								echo "<h3>Customer</h3>";							
 								echo "<h1>";
 								echo $row['firstname']." ".$row['lastname'];
 								echo "</h1>";
 								echo "<table><tr>";
 								echo "<td>Email</td><td>".$row['email']."</td> </tr><tr>";
 								echo "<td>Date Joined</td><td>".$row['datejoined']."</td>";
+							}
 								echo "</table>";
 								echo "<h2>Orders</h2>";
 								echo "<table>";
@@ -92,7 +86,7 @@
 										//echo "<h1>WORKED". print_r($statusupdate)."</h1>";
 									}
 
-
+								//get orders
 								$result = $link->query("SELECT * FROM orders WHERE userid=$id");
 								while($row = mysqli_fetch_array($result)){
 									echo "<tr>";
@@ -104,8 +98,6 @@
 									$result2 = $link->query("SELECT * FROM items WHERE itemid=$item");
 									while($row2 = mysqli_fetch_assoc($result2)){
 										echo "<td>".$row2['description']."</td>";
-
-
 										//order quantity + price
 										echo "<td>".$row['quantity']."</td>";//qt
 										echo "<td>$".sprintf('%01.2f', ($row['quantity']*$row2['price']) )."</td>";//price
@@ -116,7 +108,6 @@
 									echo "</td>";
 
 									//order status update form
-
 									$updatevalues=[
 									"Ordered",
 									"Processed",
@@ -137,8 +128,8 @@
 
 								echo "</ul>";
 							}
-						}
-					}
+						
+					
 			?>
 		</div>
 
