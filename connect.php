@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$username = "engraving";
 	$password = "engraving7777";
 	$hostname = "209.129.8.4"; 

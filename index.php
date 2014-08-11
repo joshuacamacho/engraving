@@ -4,11 +4,13 @@
 			require_once("connect.php");
 			$email=mysqli_real_escape_string($link,$_POST['email']);
 			$password=sha1(mysqli_real_escape_string($link,$_POST['password']));
-			$query="SELECT password FROM users WHERE email='".$email."'";
+			$query="SELECT password,userid FROM users WHERE email='".$email."'";
 			$result = $link->query($query);
 			while($row=mysqli_fetch_array($result)){
 				if($password == $row['password']){
-					echo "LOGIN COMPLETE";
+					session_start();
+					$_SESSION['userid']=$row['userid'];
+					header("Location: ./profile.php");
 				}
 			}
 	}
