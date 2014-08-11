@@ -9,7 +9,7 @@
 			$firstname=mysqli_real_escape_string($link,$_POST['firstname']);
 			$lastname=mysqli_real_escape_string($link,$_POST['lastname']);
 			$email=mysqli_real_escape_string($link,$_POST['email']);
-			$password=mysqli_real_escape_string($link,$_POST['password']);
+			$password=sha1(mysqli_real_escape_string($link,$_POST['password']));
 
 			
 			if(filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -29,6 +29,14 @@
 				else{
 					//if email is unique and valid form
 					 echo "email unique";
+					 $date= date("Y-m-d H:i:s");
+					 $query="INSERT INTO users (firstname,lastname,email,password,datejoined) VALUES ('".$firstname."','".$lastname."','".$email."','".$password."','".$date."')";
+					 $result=$link->query($query);
+					 if (!$result) {
+    			 $message  = 'Invalid query: ' . mysql_error() . "\n";
+				   $message .= 'Whole query: ' . $query;
+				   die($message);
+				 	 }
 				}
 
 

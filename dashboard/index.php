@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	if(isset($_SESSION['userid']) && $_SESSION['userid']==1){
+		//echo "all good";
+		//all good
+	}else{
+		header("Location: ../admin.php");
+	}
+	
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,9 +54,10 @@
 			<?php
 				if(isset($_GET['mode']) && $_GET['mode']=='users' && isset($_GET['id']) ){
 						
-							$id=$_GET['id'];
+							
 							$orderidupdate="";
 							require_once('../connect.php');
+							$id=mysqli_real_escape_string($link,$_GET['id']);
 							//get basic user data
 							$result = $link->query("SELECT * FROM users WHERE userid=$id");
 							while($row = mysqli_fetch_array($result)){

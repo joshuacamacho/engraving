@@ -2,8 +2,8 @@
 	if( isset($_POST['username']) && isset($_POST['password']) ){
 		if(!empty($_POST['username']) && !empty($_POST['password']) ){
 				require_once('connect.php');
-				$username=mysqli_real_escape_string($_POST['username']);
-				$password=mysqli_real_escape_string($_POST['password']);
+				$username=mysqli_real_escape_string($link,$_POST['username']);
+				$password=sha1(mysqli_real_escape_string($link,$_POST['password']));
 				$query="SELECT password FROM users WHERE email='$username'";
 				$result = $link->query($query);
 				if (!$result) {
@@ -17,6 +17,8 @@
 
 				if($password == $row['password']){
 					//echo "password good";
+					session_start();
+					$_SESSION['userid']=1;
 					header("Location: ./dashboard");
 				}else echo "password no good";
 			}
