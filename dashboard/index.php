@@ -23,7 +23,7 @@
 		<div id="dashleft">
 			<h1><a href="../dashboard">Dashboard</a></h1>
 			<ul>
-				<li <?php if(isset($_GET['mode'])&& $_GET['mode']=='users')echo "class='bgblue'";?> ><a href="../dashboard/?mode=users">Users</a></li>
+				<li <?php if(isset($_GET['mode'])&& $_GET['mode']=='users')echo "class='bgblue'";?> ><a href="../dashboard/?mode=users">Customers</a></li>
 				<li <?php if(isset($_GET['mode'])&& $_GET['mode']=='catalog')echo "class='bgblue'";?> ><a href="../dashboard/?mode=catalog">Catalog</a></li>
 			</ul>
 		</div>
@@ -36,7 +36,7 @@
 						$query1="SELECT * FROM users";
 						$result = $link->query($query1);
 
-						echo "<h1>Userlist</h1>";
+						echo "<h1>Customers</h1>";
 						
 						while($row = mysqli_fetch_array($result)){
 							echo "<a href='./?mode=users&id="
@@ -93,6 +93,7 @@
 					echo "<table>";
 					echo "<tr>";
 					echo "<td>Order ID</td>";
+					echo "<td>Item Name</td>";
 					echo "<td>Description</td>";
 					echo "<td>Quantitiy</td>";
 					echo "<td>Order Total</td>";
@@ -128,6 +129,7 @@
 						$orderid=$row['orderid'];
 						$result2 = $link->query("SELECT * FROM items WHERE itemid=$item");
 						while($row2 = mysqli_fetch_assoc($result2)){
+							echo "<td>".$row2['name']."</td>";
 							echo "<td>".$row2['description']."</td>";
 							//order quantity + price
 							echo "<td>".$row['quantity']."</td>";//qt

@@ -7,10 +7,10 @@
 				$query="SELECT password FROM users WHERE email='$username'";
 				$result = $link->query($query);
 				if (!$result) {
-    $message  = 'Invalid query: ' . mysql_error() . "\n";
-    //$message .= 'Whole query: ' . $query;
-    die($message);
-}
+    			$message  = 'Invalid query: ' . mysql_error() . "\n";
+    			$message .= 'Whole query: ' . $query;
+    			die($message);
+				}
 				while($row = mysqli_fetch_array($result)){
 
 				//echo "<pre>".print_r($row)."</pre>";
