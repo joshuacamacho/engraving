@@ -15,7 +15,7 @@
 			}
 	}
 
-
+	include("header.php");
 
 	echo "
 				login

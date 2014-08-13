@@ -6,7 +6,7 @@
 		 die("No login");
 	}
 	$userid=$_SESSION['userid'];
-
+	include("header.php");
 	//show user info
 	echo "<div class='profilecontainer'>";
 	echo "<h3>Name</h3>";
