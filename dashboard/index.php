@@ -219,10 +219,11 @@
 
 						echo "<h3>Catalog Item</h3>";
 						$itemid=$_GET['id'];
-						$query="SELECT name,description,price FROM items WHERE itemid='".$itemid."'";
+						$query="SELECT name,description,price,pictureurl FROM items WHERE itemid='".$itemid."'";
 						$result=$link->query($query);
 						while($row=mysqli_fetch_array($result)){
 							echo "<h1>".$row['name']."</h1>";
+							echo "<h3>Picture</h3><img src='../img/".$row['pictureurl']."'>";
 							echo "<h3>Description</h3><h1>".$row['description']."</h1>";
 							echo "<h3>Price</h3><h1>$".sprintf('%01.2f', $row['price'])."</h1>";
 
@@ -236,6 +237,24 @@
 									<input type='text' name='price'>
 									<input type='submit'>
 									</form>";
+
+						echo "<h3>Stock Level</h3>
+									<form action='' method='post'>
+									<select>
+									<option>In Stock</option>
+									<option>Sold Out</option>
+									<option>No longer sold</option>
+									</select>
+									<input type='submit' value='Update'>
+									</form>
+									<ul>
+									<li>In Stock - Shows in catalog and allows users to order</li>
+									<li>Sold Out - Shows in catalog but users cannot order</li>
+									<li>No longer sold - Does not show in catalog and users cannot order</li>
+								</ul>
+						";
+
+
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['add'])){
 
 
@@ -252,11 +271,7 @@
 						$query="INSERT INTO items (name,description,price) VALUES ('".$name."','".$description."','".$price."')";
 						$result=$link->query($query);
 
-						if (!$result) {
-							    $message  = 'Invalid query: ' . mysql_error() . "\n";
-							    $message .= 'Whole query: ' . $query;
-							    die($message);
-							  }
+						
 						
 
 					}else{
@@ -269,7 +284,8 @@
 									<h1>Price</h1>
 									<input type='text' name='itemprice'>
 									<input type='submit'>";
-						echo "</form>";
+						echo "</form>
+						";
 					}
 				}//end catalog add mode
 						

@@ -11,17 +11,22 @@
 			echo "<h3>".$row['name']."</h3>
 						<img src='img/".$row['pictureurl']."'>
 						<p>".$row['description']."</p>
-						<p>$".$row['price']." per unit</p>
-						<form action=''>
+						<p>$".$row['price']." per unit</p>";
+	if(isset($_SESSION['userid'])){
+	echo "						
+						<form action='cart.php' method='post'>
 						Quantity<select>
 							<option>10</option>
 							<option>20</option>
 							<option>3000</option>
 							</select>
-							<input type='submit'>
+							<input type='submit' value='Add to cart'>
 						</form>
 			";
+		}else{
+			//if they aren't logged in on an item page
 		}
+	}
 	}else{
 		$query="SELECT * FROM items";
 		$result=$link->query($query);
