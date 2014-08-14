@@ -206,20 +206,20 @@
 							 
 							$update = $link->query($query);
 
-							if (!$update) {
-							    $message  = 'Invalid query: ' . mysql_error() . "\n";
-							    $message .= 'Whole query: ' . $query;
-							    die($message);
-							  }
-							  //print_r($_POST['status']);
-							//echo "<h1>WORKED". print_r($statusupdate)."</h1>";
 						
+							}//end name/description/price update
+
+							//for changing stock level POST
+							if(isset($_POST['stocklevel'])){
+								$itemid=mysqli_real_escape_string($link,$_GET['id']);
+								$level=$_POST['stocklevel'];
+								$query="UPDATE items SET stocklevel='".$level."' WHERE itemid='".$itemid."'";
+								$result=$link->query($query);
 							}
 
-
 						echo "<h3>Catalog Item</h3>";
-						$itemid=$_GET['id'];
-						$query="SELECT name,description,price,pictureurl FROM items WHERE itemid='".$itemid."'";
+						$itemid=mysqli_real_escape_string($link,$_GET['id']);
+						$query="SELECT name,description,price,pictureurl,stocklevel FROM items WHERE itemid='".$itemid."'";
 						$result=$link->query($query);
 						while($row=mysqli_fetch_array($result)){
 							echo "<h1>".$row['name']."</h1>";
@@ -227,7 +227,7 @@
 							echo "<h3>Description</h3><h1>".$row['description']."</h1>";
 							echo "<h3>Price</h3><h1>$".sprintf('%01.2f', $row['price'])."</h1>";
 
-						}
+						
 						echo "<form action='./?mode=catalog&id=".$itemid."' method='post'>
 									<label>Item Name</label>
 									<input type='text' name='name'>
@@ -239,13 +239,17 @@
 									</form>";
 
 						echo "<h3>Stock Level</h3>
-									<form action='' method='post'>
-									<select>
-									<option>In Stock</option>
-									<option>Sold Out</option>
-									<option>No longer sold</option>
+									<form action='./?mode=catalog&id=".$itemid."' method='post'>
+									<select name='stocklevel'>
+									<option value='".
+									$row['stocklevel']."'>".$row['stocklevel']."</option>
+									<option value='In Stock'>In Stock</option>
+									<option value='Sold Out'>Sold Out</option>
+									<option value='No longer sold'>No longer sold</option>
 									</select>
-									<input type='submit' value='Update'>
+									<input type='submit' value='Update'>";
+						if(isset($_POST['stocklevel'])) echo "UPDATED";
+						echo "
 									</form>
 									<ul>
 									<li>In Stock - Shows in catalog and allows users to order</li>
@@ -253,7 +257,7 @@
 									<li>No longer sold - Does not show in catalog and users cannot order</li>
 								</ul>
 						";
-
+					}
 
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['add'])){
 

@@ -60,7 +60,8 @@ body {
     text-decoration: none;
     color: #222222; }
   #dashmiddle div:hover {
-    border-left: #3a85ac 5px solid; }
+    border-left: #3a85ac 5px solid;
+    background: #dadada; }
   #dashmiddle div {
     list-style-type: none;
     width: 100%;
@@ -68,8 +69,7 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    padding: 10px 0px 10px 10px;
-    border-top: 1px rgba(134, 134, 134, 0.52) dotted; }
+    padding: 10px 0px 10px 10px; }
 
 #dashright {
   width: 40%;
