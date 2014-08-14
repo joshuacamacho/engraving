@@ -30,24 +30,25 @@
 
 		<div id="dashmiddle">
 			<?php
+			
 				if(isset($_GET['mode'])){
 					if($_GET['mode']=='users' ){
 						
-						$query1="SELECT * FROM users";
-						$result = $link->query($query1);
+						$querya="SELECT * FROM users";
+						$result = $link->query($querya);
 
 						echo "<h1>Customers</h1>";
 						
-						while($row = mysqli_fetch_array($result)){
+						while( $row = mysqli_fetch_array($result) ){
+							
 							echo "<a href='./?mode=users&id="
 							.$row['userid']."'><div";
 							if(isset($_GET['id'])&& $row['userid']==$_GET['id'])echo " class='borderleft'";
 							echo ">".$row['firstname']." ".$row['lastname'];
 							echo"</div></a>";
+							
 						}
-						
-					}else{
-						if($_GET['mode']=='catalog'){
+					}else	if($_GET['mode']=='catalog'){
 							$query="SELECT * FROM items";
 							$result=$link->query($query);
 
@@ -60,9 +61,12 @@
 							}
 							
 						}
-					}
+			    
+
+						
+			}
 					
-				}
+				
 				
 			?>
 
@@ -71,7 +75,8 @@
 		<div id="dashright">
 			<?php
 				//user mode right side
-				if(isset($_GET['mode']) && $_GET['mode']=='users' && isset($_GET['id']) ){
+			
+				if( isset($_GET['mode']) && $_GET['mode']=='users' && isset($_GET['id']) ){
 						
 				
 				$orderidupdate="";
@@ -88,6 +93,7 @@
 					echo "<td>Email</td><td>".$row['email']."</td> </tr><tr>";
 					echo "<td>Date Joined</td><td>".$row['datejoined']."</td>";
 				}
+
 					echo "</table>";
 					echo "<h2>Orders</h2>";
 					echo "<table>";
@@ -99,10 +105,11 @@
 					echo "<td>Order Total</td>";
 					echo "<td>Date Placed</td>";
 					echo "<td>Status</td>";
-					
+				
 
 				//for updating order status
 					if(isset($_POST['status'])){
+						
 						$statusupdate=$_POST['status'];
 						$orderidupdate=$_POST['orderid'];
 
@@ -114,6 +121,8 @@
 						    $message .= 'Whole query: ' . $query;
 						    die($message);
 						  }
+
+						  
 						  //print_r($_POST['status']);
 						//echo "<h1>WORKED". print_r($statusupdate)."</h1>";
 					}
@@ -121,31 +130,34 @@
 					//get orders
 					$result = $link->query("SELECT * FROM orders WHERE userid=$id");
 					while($row = mysqli_fetch_array($result)){
+
 						echo "<tr>";
 						echo "<td>".$row['orderid']."</td>";
 						//give item description
 						$item=$row['itemid'];
 						$status=$row['status'];
 						$orderid=$row['orderid'];
-						$result2 = $link->query("SELECT * FROM items WHERE itemid=$item");
-						while($row2 = mysqli_fetch_assoc($result2)){
-							echo "<td>".$row2['name']."</td>";
-							echo "<td>".$row2['description']."</td>";
+						$resultb = $link->query("SELECT * FROM items WHERE itemid='".$item."'");
+						
+						while($rowb = mysqli_fetch_assoc($resultb)){
+							echo "<td>".$rowb['name']."</td>";
+							echo "<td>".$rowb['description']."</td>";
 							//order quantity + price
 							echo "<td>".$row['quantity']."</td>";//qt
-							echo "<td>$".sprintf('%01.2f', ($row['quantity']*$row2['price']) )."</td>";//price
+							echo "<td>$".sprintf('%01.2f', ($row['quantity']*$rowb['price']) )."</td>";//price
 						}
+
 						//order date
 						echo "<td>";
 						echo $row['timeordered'];
 						echo "</td>";
 
 						//order status update form
-						$updatevalues=[
+						$updatevalues=array(
 						"Ordered",
 						"Processed",
 						"Shipped"
-						];
+						);
 						echo "<td><form method='post' action='./?mode=users&id=".$id."'><select name='status'>";
 						echo "<option selected='selected' value='".$status."'>".$status."</option>";
 						foreach($updatevalues as $val){
@@ -157,10 +169,11 @@
 						echo "</td>";
 						echo "</form>";
 						echo "</tr>";
+						
 					}
 
 					echo "</ul>";
-
+					
 								//catalog item manangement
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['id']) ){
 
