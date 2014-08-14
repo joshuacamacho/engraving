@@ -25,7 +25,8 @@
 				<a href='catalog.php'><li>Catalog</l1></a>";
 	if(isset($_SESSION['userid'])){
 		echo "<a href='profile.php'><li>Profile</li></a>
-					<a href='logout.php'><li>Log Out</l1></a>";
+					<a href='logout.php'><li>Log Out</l1></a>
+					</ul>";
 	}else{
 	 		echo "<a href='register.php'><li>Register</li></a>
 						</ul>
