@@ -1,4 +1,5 @@
 <?php
+	include("header.php");
 	if(
 		isset($_POST['firstname']) &&
 		isset($_POST['lastname']) &&
