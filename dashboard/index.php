@@ -13,6 +13,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/site.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <title>Dashboard Home</title>
 </head>
