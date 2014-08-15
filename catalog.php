@@ -15,11 +15,12 @@
 			if(isset($_SESSION['userid']) && ($row['stocklevel']=='In Stock')){
 				echo "Stock Level: ".$row['stocklevel']."					
 							<form action='cart.php' method='post'>
-							Quantity<select>
-								<option>10</option>
-								<option>20</option>
-								<option>3000</option>
+							Quantity<select name='quantity'>
+								<option value='10'>10</option>
+								<option value='20'>20</option>
+								<option value='30'>30</option>
 								</select>
+								<input type='hidden' name='itemid' value='".$itemid."'>
 								<input type='submit' value='Add to cart'>
 							</form>
 				";
