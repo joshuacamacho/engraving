@@ -29,23 +29,16 @@ body {
     #dashleft h1 a {
       text-decoration: none;
       color: #cccccc; }
-  #dashleft ul {
-    list-style: none;
-    width: 100%;
-    padding: 0 0 0 0px; }
-    #dashleft ul li {
-      width: 100%;
-      padding: 10px 0px 10px 0; }
-    #dashleft ul li:hover {
+  #dashleft a {
+    text-decoration: none;
+    color: #fffffd;
+    font-family: 'Roboto', sans-serif; }
+    #dashleft a div {
+      padding: 10px 0 10px 20px; }
+    #dashleft a div:hover {
       background: #3786af; }
-    #dashleft ul a {
-      text-decoration: none;
-      color: #fffffd;
-      font-family: 'Roboto', sans-serif;
-      padding: 0 0 0 40px; }
 
 #dashmiddle {
-  overflow: scroll;
   font-size: 16px;
   min-width: 180px;
   max-width: 280px;

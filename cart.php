@@ -19,7 +19,7 @@
 			$query="DELETE FROM cart WHERE cartid='".$cartid."'";
 			$result=$link->query($query);
 		}
-
+		$grandtotal=0;
 		$query="SELECT * FROM cart WHERE userid='".$userid."'";
 		$result=$link->query($query);
 		while($row=mysqli_fetch_array($result)){
@@ -33,6 +33,7 @@
 				echo $itemrow['description'];
 				echo "Quantity: ".$row['quantity']." ";
 				echo "Total Cost= ".$itemrow['price']*$row['quantity'];
+				$grandtotal+=$itemrow['price']*$row['quantity'];
 				echo "</div>";
 			}
 			$cartid=$row['cartid'];
@@ -41,9 +42,10 @@
 							<input type='submit' value='Delete Item'>
 							</form>
 						";
+
 		}
-
-
-	echo "</div>";
+		echo "Grandtotal = ".$grandtotal;
+		echo "<h2><a href='checkout.php'>Proceed to checkout</a></h2>";
+		echo "</div>";
 
 ?>

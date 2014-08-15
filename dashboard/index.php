@@ -24,10 +24,9 @@
 
 		<div id="dashleft">
 			<h1><a href="../dashboard">Dashboard</a></h1>
-			<ul>
-				<li <?php if(isset($_GET['mode'])&& $_GET['mode']=='users')echo "class='bgblue'";?> ><a href="../dashboard/?mode=users">Customers</a></li>
-				<li <?php if(isset($_GET['mode'])&& $_GET['mode']=='catalog')echo "class='bgblue'";?> ><a href="../dashboard/?mode=catalog">Catalog</a></li>
-			</ul>
+				<a href="../dashboard/?mode=users"><div <?php if(isset($_GET['mode'])&& $_GET['mode']=='users')echo "class='bgblue'";?> >Customers</div></a>
+				<a href="../dashboard/?mode=catalog"><div <?php if(isset($_GET['mode'])&& $_GET['mode']=='catalog')echo "class='bgblue'";?> >Catalog</div></a>
+				<a href="../logout.php"><div>Logout</div></a>
 		</div>
 
 		<div id="dashmiddle">
@@ -36,14 +35,70 @@
 				if(isset($_GET['mode'])){
 					if($_GET['mode']=='users' ){
 						
-						$querya="SELECT * FROM users";
+						//pagination
+						$query="SELECT COUNT(userid) FROM users";
+						$result=$link->query($query);
+						$row=mysqli_fetch_row($result);
+						//total row count
+						$rows=$row[0];
+						//the number of results displayed per page
+						$page_rows = 10;
+						// this is the page number of our last page
+						$last= ceil($rows/$page_rows);
+						// makes sure last cannot be less than one
+						if($last<1) $last= 1;
+						// establish $pagenum
+						$pagenum = 1;
+						// get pagenum from URL vars if it is present, else its = 1
+						if(isset($_GET['pn'])){
+							$pagenum = preg_replace('#[^0-9]#','',$_GET['pn']);
+						}
+						// this makes sure pagenum isnt below 1 or more than our $last page
+						if($pagenum<1){
+							$pagenum = 1;
+						}else if ($pagenum > $last){
+							$pagenum = $last;
+						}
+						$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
+
+						
+
+						$querya="SELECT * FROM users ORDER BY userid DESC $limit";
 						$result = $link->query($querya);
 
+						$paginationCtrls = '';
+						// if there is more than one page of results
+						if($last != 1){
+							if( $pagenum > 1 ){
+								$previous = $pagenum - 1;
+								$paginationCtrls.="<a href='./?mode=users&pn=".$previous."'>Previous</a>";
+								for($i = $pagenum - 4; $i < $pagenum; $i++){
+									if($i > 0){
+										$paginationCtrls.="<a href='./?mode=users&pn=".$i."'>".$i."</a>";
+									}
+								}
+							}
+						}
+						$paginationCtrls .= ''.$pagenum.' &nbsp; ';
+						// Render clickable number links that should appear on the right of the target page number
+						for($i = $pagenum+1; $i <= $last; $i++){
+							$paginationCtrls .= '<a href="./?mode=users&pn='.$i.'">'.$i.'</a> &nbsp; ';
+							if($i >= $pagenum+4){
+								break;
+							}
+						}
+						// This does the same as above, only checking if we are on the last page, and then generating the "Next"
+					    if ($pagenum != $last) {
+					        $next = $pagenum + 1;
+					        $paginationCtrls .= ' &nbsp; &nbsp; <a href="./?mode=users&pn='.$next.'">Next</a> ';
+					    }
+
+
 						echo "<h1>Customers</h1>";
-						
+						echo $paginationCtrls;
 						while( $row = mysqli_fetch_array($result) ){
 							
-							echo "<a href='./?mode=users&id="
+							echo "<a href='./?mode=users&pn=".$pagenum."&id="
 							.$row['userid']."'><div";
 							if(isset($_GET['id'])&& $row['userid']==$_GET['id'])echo " class='borderleft'";
 							echo ">".$row['firstname']." ".$row['lastname'];
@@ -262,7 +317,7 @@
 					}
 
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['add'])){
-
+					//add new item to catalog if add new item form was used
 
 					if(isset($_POST['itemname']) 
 						&& !empty($_POST['itemname']) 
@@ -271,9 +326,9 @@
 						&& isset($_POST['itemprice'])
 						&& !empty($_POST['itemprice'])
 						){
-						$name=mysql_real_escape_string($_POST['itemname']);
-						$description=mysql_real_escape_string($_POST['itemdescription']);
-						$price=mysql_real_escape_string($_POST['itemprice']);
+						$name=mysql_real_escape_string(htmlentities($_POST['itemname']));
+						$description=mysql_real_escape_string(htmlentities($_POST['itemdescription']));
+						$price=mysql_real_escape_string(htmlentities($_POST['itemprice']));
 						$query="INSERT INTO items (name,description,price) VALUES ('".$name."','".$description."','".$price."')";
 						$result=$link->query($query);
 
