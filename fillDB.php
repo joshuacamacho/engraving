@@ -114,7 +114,7 @@ echo "</pre>";
 echo "<pre>";
 print_r($emails);
 echo "</pre>";
-
+/*
 
 for($i=0; $i<31; $i++){
 	$result=mysql_query("INSERT INTO users (firstname,lastname,email,password) 
@@ -124,6 +124,6 @@ for($i=0; $i<31; $i++){
     //$message .= 'Whole query: ' . $query;
     die($message);
 	}
-}
+}*/
 ?>
 
