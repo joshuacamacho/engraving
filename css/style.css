@@ -38,42 +38,89 @@ body {
     #dashleft a div:hover {
       background: #3786af; }
 
+.pagination {
+  padding: 2px 0px 14px 0px;
+  font-size: 14px;
+  margin: auto auto auto 10px; }
+  .pagination div {
+    text-align: center;
+    display: inline-block;
+    min-width: 20px;
+    height: 20px;
+    background: #3786af;
+    margin: 0 2px 0 2px;
+    padding: 4px 2px 1px 2px; }
+  .pagination a {
+    color: #fffffd !important;
+    font-family: 'Roboto', sans-serif; }
+    .pagination a div {
+      text-align: center;
+      display: inline-block;
+      min-width: 20px;
+      height: 20px;
+      background: #666666;
+      margin: 0 2px 0 2px;
+      padding: 4px 2px 1px 2px; }
+    .pagination a div:hover {
+      background: #3786af; }
+  .pagination span {
+    color: #fffffd !important;
+    font-family: 'Roboto', sans-serif; }
+
 #dashmiddle {
   font-size: 16px;
-  min-width: 180px;
-  max-width: 280px;
+  min-width: 280px;
   height: 600px;
   display: inline-block;
   vertical-align: top; }
   #dashmiddle h1 {
+    margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    padding: 0 0 0 10px; }
-  #dashmiddle a {
+    padding: 16px 0 16px 10px;
+    border-bottom: 1px #bebebe dotted;
+    border-right: 1px #bebebe dotted; }
+    #dashmiddle h1 span {
+      padding: 6px 8px 6px 8px;
+      background: #a3a4a6;
+      color: white;
+      border-radius: 4px; }
+    #dashmiddle h1 a {
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      padding: 0 0 0 10px;
+      text-decoration: none;
+      color: #222222; }
+  #dashmiddle .middlelist a {
     text-decoration: none;
     color: #222222; }
-  #dashmiddle div:hover {
-    border-left: #3a85ac 5px solid;
-    background: #dadada; }
-  #dashmiddle div {
-    list-style-type: none;
-    width: 100%;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    padding: 10px 0px 10px 10px; }
+    #dashmiddle .middlelist a div:hover {
+      border-left: #3a85ac 5px solid;
+      background: #dadada; }
+    #dashmiddle .middlelist a div {
+      list-style-type: none;
+      max-width: 280px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+      padding: 10px 0px 10px 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
 
 #dashright {
   width: 40%;
   font-size: 16px;
   display: inline-block;
   vertical-align: top; }
-  #dashright h3 {
-    padding: 10px 0 0 5px;
+  #dashright h3:nth-child(1) {
+    font-size: 14px;
+    padding: 16px 0 16px 10px;
     margin: 0;
     color: gray;
-    font-family: 'Roboto', sans-serif; }
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 1px #bebebe dotted; }
   #dashright table:nth-child(3) {
     border-spacing: 0;
     min-width: 40%;
@@ -86,7 +133,7 @@ body {
   #dashright h1 {
     font-size: 38px;
     font-family: 'Roboto', sans-serif;
-    padding: 0px 0 0 10px;
+    padding: 5px 0 0 20px;
     margin: 0; }
   #dashright h2 {
     padding: 0 0 0 10px;

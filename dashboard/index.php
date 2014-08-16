@@ -42,9 +42,9 @@
 						//total row count
 						$rows=$row[0];
 						//the number of results displayed per page
-						$page_rows = 10;
+						$page_rows = 20;
 						// this is the page number of our last page
-						$last= ceil($rows/$page_rows);
+						$last=ceil($rows/$page_rows);
 						// makes sure last cannot be less than one
 						if($last<1) $last= 1;
 						// establish $pagenum
@@ -63,7 +63,7 @@
 
 						
 
-						$querya="SELECT * FROM users ORDER BY userid DESC $limit";
+						$querya="SELECT * FROM users $limit";
 						$result = $link->query($querya);
 
 						$paginationCtrls = '';
@@ -71,31 +71,37 @@
 						if($last != 1){
 							if( $pagenum > 1 ){
 								$previous = $pagenum - 1;
-								$paginationCtrls.="<a href='./?mode=users&pn=".$previous."'>Previous</a>";
-								for($i = $pagenum - 4; $i < $pagenum; $i++){
+								$paginationCtrls.="<a href='./?mode=users&pn=".$previous."'><div><</div></a>";
+								for($i = $pagenum - 3; $i < $pagenum; $i++){
 									if($i > 0){
-										$paginationCtrls.="<a href='./?mode=users&pn=".$i."'>".$i."</a>";
+										$paginationCtrls.="<a href='./?mode=users&pn=".$i."'><div>".$i."</div></a>";
 									}
 								}
 							}
 						}
-						$paginationCtrls .= ''.$pagenum.' &nbsp; ';
+						$paginationCtrls .= '<div><span>'.$pagenum.'</span></div>';
 						// Render clickable number links that should appear on the right of the target page number
 						for($i = $pagenum+1; $i <= $last; $i++){
-							$paginationCtrls .= '<a href="./?mode=users&pn='.$i.'">'.$i.'</a> &nbsp; ';
-							if($i >= $pagenum+4){
+							$paginationCtrls .= '<a href="./?mode=users&pn='.$i.'"><div>'.$i.'</div></a>';
+							if($i >= $pagenum+3){
 								break;
 							}
 						}
 						// This does the same as above, only checking if we are on the last page, and then generating the "Next"
 					    if ($pagenum != $last) {
 					        $next = $pagenum + 1;
-					        $paginationCtrls .= ' &nbsp; &nbsp; <a href="./?mode=users&pn='.$next.'">Next</a> ';
+					        $paginationCtrls .= '<a href="./?mode=users&pn='.$next.'"><div>></div></a>';
 					    }
 
 
-						echo "<h1>Customers</h1>";
-						echo $paginationCtrls;
+						echo "<h1><span>Customers</span></h1>";
+						echo "<form action='' method='POST'>
+										<input type='text' name='searchname'>
+										<input type='submit' value='Search'>
+									</form>
+									";
+						echo "<div class='pagination'>".$paginationCtrls."</div>";
+						echo "<div class='middlelist'>";
 						while( $row = mysqli_fetch_array($result) ){
 							
 							echo "<a href='./?mode=users&pn=".$pagenum."&id="
@@ -105,18 +111,20 @@
 							echo"</div></a>";
 							
 						}
+						echo "</div>";
 					}else	if($_GET['mode']=='catalog'){
 							$query="SELECT * FROM items";
 							$result=$link->query($query);
 
 							echo "<h1><a href='./?mode=catalog&add=new'>Add New</a></h1>";
+							echo "<div class='middlelist'>";
 							while($row=mysqli_fetch_array($result)){
 								echo "<a href='.?mode=catalog&id=".$row['itemid']."'><div";
 								if(isset($_GET['id'])&& $row['itemid']==$_GET['id'])echo " class='borderleft'";
 								echo ">".$row['name'];
 								echo "</div></a>";
 							}
-							
+							echo "</div>";
 						}
 			    
 

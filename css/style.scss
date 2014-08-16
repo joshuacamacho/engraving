@@ -3,7 +3,7 @@
 body{
 	margin:0;
 }
-
+$dottedgrey:rgb(190, 190, 190);
 .dashboard{
 	width:100%;
 	font-size:0;
@@ -45,51 +45,119 @@ body{
 	}
 	
 }
+.pagination{
+	padding: 2px 0px 14px 0px;
+	font-size:14px;
+	margin:auto auto auto 10px;
+	div{
+		text-align:center;
+			display:inline-block;
+			min-width:20px;
+			height:20px;
+			background:#3786af;
+			margin:0 2px 0 2px;
+			padding:4px 2px 1px 2px;
+		}
+	
+	
+	a{
+		color:#fffffd!important;
+		font-family:'Roboto', sans-serif;
+		div{
+			text-align:center;
+			display:inline-block;
+			min-width:20px;
+			height:20px;
+			background:#666666;
+			margin:0 2px 0 2px;
+			padding:4px 2px 1px 2px;
+			
+		}
+		div:hover{
+		background:#3786af;
+
+		}
+	}
+	
+	
+	span{
+		color:#fffffd!important;
+		font-family:'Roboto', sans-serif;
+
+	}
+}
 #dashmiddle{
 	
 	font-size:16px;
-	min-width:180px;
-	max-width:280px;
+	
+	min-width:280px;
 	height:600px;
 	display:inline-block;
 	
 	vertical-align: top;
 	h1{
+		margin:0;
 		font-family: 'Roboto', sans-serif;
 		font-size:14px;
-		padding:0 0 0 10px;
-	}
-	a{
+		padding:16px 0 16px 10px;
+		border-bottom:1px $dottedgrey dotted;
+		border-right:1px $dottedgrey dotted;
+		span{
+			
+			padding:6px 8px 6px 8px;
+			background:#a3a4a6;
+			color:white;
+			border-radius:4px;
+		}
+		a{
+			font-family: 'Roboto', sans-serif;
+			font-size:14px;
+			padding:0 0 0 10px;
 			text-decoration: none;
+			color:#222222;
+		}
+	}
+	.middlelist{
+		a{
+				text-decoration: none;
 				color:#222222;	
-				
+			div:hover{
+				border-left: #3a85ac 5px solid;
+				background: rgb(218, 218, 218);
+							}
+
+
+			div{
+				list-style-type: none;
+				max-width:280px;
+				box-sizing:border-box;
+		  	-moz-box-sizing:border-box;
+		  	-webkit-box-sizing:border-box;
+				font-family: 'Roboto', sans-serif;
+				padding:10px 0px 10px 10px;
+				white-space:nowrap;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				}
 			}
-	div:hover{
-			border-left: #3a85ac 5px solid;
-			background: rgb(218, 218, 218);
-	}
-	div{
-		list-style-type: none;
-		width:100%;
-		box-sizing:border-box;
-  	-moz-box-sizing:border-box;
-  	-webkit-box-sizing:border-box;
-		font-family: 'Roboto', sans-serif;
-		padding:10px 0px 10px 10px;
-		
-	}
+		}
+	
+	
 }
+
 #dashright{
 	width:40%;
 	font-size:16px;
 	display:inline-block;
 	
 	vertical-align: top;
-	h3{
-		padding:10px 0 0 5px;
+	h3:nth-child(1){
+		font-size:14px;
+		padding:16px 0 16px 10px;
 		margin:0;
 		color:gray;
 		font-family: 'Roboto', sans-serif;
+		border-bottom: 1px $dottedgrey dotted;
 	}
 	table:nth-child(3){
 		border-spacing: 0;
@@ -107,7 +175,7 @@ body{
 		h1{
 			font-size:38px;
 			font-family: 'Roboto', sans-serif;
-			padding:0px 0 0 10px;
+			padding:5px 0 0 20px;
 			
 			margin:0;
 		}
