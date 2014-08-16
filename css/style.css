@@ -78,8 +78,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     padding: 16px 0 16px 10px;
-    border-bottom: 1px #bebebe dotted;
-    border-right: 1px #bebebe dotted; }
+    border-bottom: 1px #bebebe dotted; }
     #dashmiddle h1 span {
       padding: 6px 8px 6px 8px;
       background: #a3a4a6;
@@ -120,27 +119,29 @@ body {
     margin: 0;
     color: gray;
     font-family: 'Roboto', sans-serif;
-    border-bottom: 1px #bebebe dotted; }
-  #dashright table:nth-child(3) {
+    border-bottom: 1px #bebebe dotted;
+    border-left: 1px #bebebe dotted; }
+  #dashright table:nth-child(2) {
     border-spacing: 0;
     min-width: 40%;
-    padding: 0 0 0 10px;
+    padding: 20px 0 0 10px;
     font-family: 'Roboto', sans-serif; }
-    #dashright table:nth-child(3) td:nth-child(1) {
-      width: 40%; }
-    #dashright table:nth-child(3) td {
-      border-bottom: 1px #222222 solid; }
+    #dashright table:nth-child(2) td:nth-child(1) {
+      width: 86px; }
   #dashright h1 {
     font-size: 38px;
     font-family: 'Roboto', sans-serif;
-    padding: 5px 0 0 20px;
+    padding: 30px 0 40px 20px;
+    border-bottom: 20px #3786af solid;
     margin: 0; }
   #dashright h2 {
     padding: 0 0 0 10px;
     font-family: 'Roboto', sans-serif; }
-  #dashright table:nth-child(5) {
+  #dashright table:nth-child(4) {
     padding: 0 0 0 10px; }
-    #dashright table:nth-child(5) tr:nth-child(1) {
+    #dashright table:nth-child(4) tr:nth-child(1) {
       text-align: center; }
-    #dashright table:nth-child(5) td {
+    #dashright table:nth-child(4) td {
       padding: 0 5px 0 5px; }
+  #dashright .rightlist {
+    border-left: 1px #bebebe dotted; }

@@ -148,9 +148,11 @@
 				require_once('../connect.php');
 				$id=mysqli_real_escape_string($link,$_GET['id']);
 				//get basic user data
+				
 				$result = $link->query("SELECT * FROM users WHERE userid=$id");
 				while($row = mysqli_fetch_array($result)){
-					echo "<h3>Customer</h3>";							
+					echo "<h3>Customer</h3>";
+					echo "<div class='rightlist'>";							
 					echo "<h1>";
 					echo $row['firstname']." ".$row['lastname'];
 					echo "</h1>";
@@ -237,7 +239,8 @@
 						
 					}
 
-					echo "</ul>";
+					echo "</table>";
+					echo "</div>";
 					
 								//catalog item manangement
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['id']) ){
