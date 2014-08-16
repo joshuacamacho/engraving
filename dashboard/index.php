@@ -34,9 +34,27 @@
 			
 				if(isset($_GET['mode'])){
 					if($_GET['mode']=='users' ){
+						//if search has been used
+						
+						
 						
 						//pagination
 						$query="SELECT COUNT(userid) FROM users";
+						$addon='';
+						if(isset($_POST['searchname'])){
+						  $search=htmlentities(mysqli_real_escape_string($link,$_POST['searchname']));
+						  $search=explode(" ", $search);
+						  //echo "<pre>".print_r($search)."</pre>";
+						  if(count($search)==1){
+						    $addon.=" WHERE firstname='".$search[0]."'";
+						    
+						  }else if(count($search==2)){
+						    $addon.=" WHERE firstname='".$search[0]."'";
+						    $addon.="AND lastname='".$search[1]."'";
+						  }
+						  $query.=$addon;
+						  //echo $query;
+						}
 						$result=$link->query($query);
 						$row=mysqli_fetch_row($result);
 						//total row count
@@ -63,7 +81,7 @@
 
 						
 
-						$querya="SELECT * FROM users $limit";
+						$querya="SELECT * FROM users".$addon." $limit";
 						$result = $link->query($querya);
 
 						$paginationCtrls = '';
@@ -95,7 +113,7 @@
 
 
 						echo "<h1><span>Customers</span></h1>";
-						echo "<form action='' method='POST'>
+						echo "<form action='./?mode=users' method='POST'>
 										<input type='text' name='searchname'>
 										<input type='submit' value='Search'>
 									</form>
