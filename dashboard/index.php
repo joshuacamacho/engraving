@@ -158,7 +158,7 @@
 					echo "</h1>";
 					echo "<table><tr>";
 					echo "<td>Email</td><td>".$row['email']."</td> </tr><tr>";
-					echo "<td>Date Joined</td><td>".$row['datejoined']."</td>";
+					echo "<td>Joined</td><td>".$row['datejoined']."</td>";
 				}
 
 					echo "</table>";
@@ -167,7 +167,6 @@
 					echo "<tr>";
 					echo "<td>Order ID</td>";
 					echo "<td>Item Name</td>";
-					echo "<td>Description</td>";
 					echo "<td>Quantitiy</td>";
 					echo "<td>Order Total</td>";
 					echo "<td>Date Placed</td>";
@@ -197,18 +196,20 @@
 					//get orders
 					$result = $link->query("SELECT * FROM orders WHERE userid=$id");
 					while($row = mysqli_fetch_array($result)){
-
-						echo "<tr>";
-						echo "<td>".$row['orderid']."</td>";
-						//give item description
 						$item=$row['itemid'];
 						$status=$row['status'];
 						$orderid=$row['orderid'];
+
+						if($orderidupdate==$orderid) echo "<tr class='updated'><td colspan='7'> Updated Order &darr; </td></tr>";
+						echo "<tr>";
+						echo "<td>".$row['orderid']."</td>";
+						//give item description
+						
 						$resultb = $link->query("SELECT * FROM items WHERE itemid='".$item."'");
 						
 						while($rowb = mysqli_fetch_assoc($resultb)){
-							echo "<td>".$rowb['name']."</td>";
-							echo "<td>".$rowb['description']."</td>";
+							echo "<td><a target='blank' href='../catalog.php?itemid=".$item."'>".$rowb['name']."</a></td>";
+							
 							//order quantity + price
 							echo "<td>".$row['quantity']."</td>";//qt
 							echo "<td>$".sprintf('%01.2f', ($row['quantity']*$rowb['price']) )."</td>";//price
@@ -225,14 +226,14 @@
 						"Processed",
 						"Shipped"
 						);
-						echo "<td><form method='post' action='./?mode=users&id=".$id."'><select name='status'>";
+						echo "<td><form method='post' action='./?mode=users&pn=".$pagenum."&id=".$id."'><select name='status'>";
 						echo "<option selected='selected' value='".$status."'>".$status."</option>";
 						foreach($updatevalues as $val){
 							echo "<option value='".$val."'>".$val."</option>";
 						}
 						echo "</select><input type='hidden' name='orderid' value='".$orderid."'</td>";
 						echo "<td><input type='submit' value='Update'>";
-						if($orderidupdate==$orderid) echo " UPDATED!";
+						
 						echo "</td>";
 						echo "</form>";
 						echo "</tr>";

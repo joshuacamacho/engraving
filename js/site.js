@@ -16,6 +16,11 @@ $(document).ready(function() {
 	$('#dashright').css({
 		'height':maxheight
 	});
+	maxheight-=52;
+	$('.rightlist').css({
+		'height':maxheight
+	});
+
 	console.log(maxheight);
 
 

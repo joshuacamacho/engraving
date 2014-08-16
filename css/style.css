@@ -39,7 +39,7 @@ body {
       background: #3786af; }
 
 .pagination {
-  padding: 2px 0px 14px 0px;
+  padding: 10px 0px 14px 0px;
   font-size: 14px;
   margin: auto auto auto 10px; }
   .pagination div {
@@ -73,6 +73,8 @@ body {
   height: 600px;
   display: inline-block;
   vertical-align: top; }
+  #dashmiddle form {
+    padding: 10px 0 0 8px; }
   #dashmiddle h1 {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -109,7 +111,7 @@ body {
       text-overflow: ellipsis; }
 
 #dashright {
-  width: 40%;
+  width: 800px;
   font-size: 16px;
   display: inline-block;
   vertical-align: top; }
@@ -138,10 +140,42 @@ body {
     padding: 0 0 0 10px;
     font-family: 'Roboto', sans-serif; }
   #dashright table:nth-child(4) {
+    width: 700px;
     padding: 0 0 0 10px; }
     #dashright table:nth-child(4) tr:nth-child(1) {
       text-align: center; }
     #dashright table:nth-child(4) td {
       padding: 0 5px 0 5px; }
+    #dashright table:nth-child(4) .updated {
+      font-family: 'Roboto', sans-serif;
+      font-size: 24px;
+      background: green;
+      color: white;
+      text-align: center;
+      -webkit-animation: hide 5s;
+      /* Chrome, Safari, Opera */
+      animation: hide 5s; }
+      #dashright table:nth-child(4) .updated td {
+        -webkit-animation: hide 5s;
+        /* Chrome, Safari, Opera */
+        animation: hide 5s; }
   #dashright .rightlist {
     border-left: 1px #bebebe dotted; }
+
+@-webkit-keyframes hide {
+  from {
+    height: 40px;
+    display: table-row; }
+
+  to {
+    height: 0px;
+    display: none; } }
+
+/* Standard syntax */
+@keyframes hide {
+  from {
+    height: 40px; }
+
+  to {
+    height: 0px;
+    display: none; } }
