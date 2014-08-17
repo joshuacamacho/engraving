@@ -49,7 +49,8 @@ body {
     height: 20px;
     background: #3786af;
     margin: 0 2px 0 2px;
-    padding: 4px 2px 1px 2px; }
+    padding: 3px 2px 3px 2px;
+    vertical-align: top; }
   .pagination a {
     color: #fffffd !important;
     font-family: 'Roboto', sans-serif; }
@@ -60,7 +61,8 @@ body {
       height: 20px;
       background: #666666;
       margin: 0 2px 0 2px;
-      padding: 4px 2px 1px 2px; }
+      padding: 3px 2px 3px 2px;
+      vertical-align: top; }
     .pagination a div:hover {
       background: #3786af; }
   .pagination span {
@@ -74,7 +76,27 @@ body {
   display: inline-block;
   vertical-align: top; }
   #dashmiddle form {
+    font-size: 0;
     padding: 10px 0 0 8px; }
+    #dashmiddle form input {
+      margin: 0; }
+    #dashmiddle form input:nth-child(1) {
+      height: 30px;
+      width: 198px;
+      font-size: 14px;
+      font-family: "Roboto", sans-serif; }
+    #dashmiddle form #submit {
+      color: #fffffd;
+      font-size: 14px;
+      font-family: "Roboto", sans-serif;
+      border: 0;
+      vertical-align: top;
+      text-align: center;
+      background: #666666;
+      width: 60px;
+      height: 36px; }
+    #dashmiddle form #submit:hover {
+      background: #3786af; }
   #dashmiddle h1 {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -170,7 +192,6 @@ body {
   to {
     height: 0px;
     display: none; } }
-
 /* Standard syntax */
 @keyframes hide {
   from {

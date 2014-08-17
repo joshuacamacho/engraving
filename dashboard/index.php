@@ -115,7 +115,7 @@
 						echo "<h1><span>Customers</span></h1>";
 						echo "<form action='./?mode=users' method='POST'>
 										<input type='text' name='searchname'>
-										<input type='submit' value='Search'>
+										<input id='submit' type='submit' value='Search'>
 									</form>
 									";
 						echo "<div class='pagination'>".$paginationCtrls."</div>";
