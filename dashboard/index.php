@@ -264,19 +264,19 @@
 								//catalog item manangement
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['id']) ){
 
-						$itemid=mysqli_real_escape_string($link,$_GET['id']);
+						$itemid=htmlentities(mysqli_real_escape_string($link,$_GET['id']));
 					//for updating item details
 						if( (isset($_POST['name']) || isset($_POST['description']) || isset($_POST['price']))
 							&& ( (!empty($_POST['name'])) || (!empty($_POST['description'])) || (!empty($_POST['price'])))
 						  ){
 							if(isset($_POST['name']) && (!empty($_POST['name']))) {
-								$name=mysqli_real_escape_string($link,$_POST['name']);
+								$name=htmlentities(mysqli_real_escape_string($link,$_POST['name']));
 							}
 							if(isset($_POST['description']) &&(!empty($_POST['description']))){
-								$description=mysqli_real_escape_string($link,$_POST['description']);
+								$description=htmlentities(mysqli_real_escape_string($link,$_POST['description']));
 							} 
 							if(isset($_POST['price']) &&(!empty($_POST['price']))){
-								$price=mysqli_real_escape_string($link,$_POST['price']);
+								$price=htmlentities(mysqli_real_escape_string($link,$_POST['price']));
 							}
 							$query="UPDATE items SET ";
 							if(isset($name)) $query.="name='".$name."'";
@@ -298,14 +298,14 @@
 
 							//for changing stock level POST
 							if(isset($_POST['stocklevel'])){
-								$itemid=mysqli_real_escape_string($link,$_GET['id']);
+								$itemid=htmlentities(mysqli_real_escape_string($link,$_GET['id']));
 								$level=$_POST['stocklevel'];
 								$query="UPDATE items SET stocklevel='".$level."' WHERE itemid='".$itemid."'";
 								$result=$link->query($query);
 							}
 
 						echo "<h3>Catalog Item</h3>";
-						$itemid=mysqli_real_escape_string($link,$_GET['id']);
+						$itemid=htmlentities(mysqli_real_escape_string($link,$_GET['id']));
 						$query="SELECT name,description,price,pictureurl,stocklevel FROM items WHERE itemid='".$itemid."'";
 						$result=$link->query($query);
 						while($row=mysqli_fetch_array($result)){

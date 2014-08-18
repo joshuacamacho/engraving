@@ -8,8 +8,8 @@
 	$userid=$_SESSION['userid'];
 
 		if( isset($_POST['itemid']) && isset($_POST['quantity']) ){
-			$itemid=mysqli_real_escape_string($link,$_POST['itemid']);
-			$quantity=mysqli_real_escape_string($link,$_POST['quantity']);
+			$itemid=htmlentities(mysqli_real_escape_string($link,$_POST['itemid']));
+			$quantity=htmlentities(mysqli_real_escape_string($link,$_POST['quantity']));
 			$query="INSERT INTO cart (itemid,quantity,userid) VALUES ('".$itemid."','".$quantity."','".$userid."')";
 			$result=$link->query($query);
 			echo "Item added to cart";
@@ -44,8 +44,13 @@
 						";
 
 		}
-		echo "Grandtotal = ".$grandtotal;
-		echo "<h2><a href='checkout.php'>Proceed to checkout</a></h2>";
-		echo "</div>";
-
+		$result=$link->query("SELECT COUNT(cartid) FROM cart WHERE userid='".$userid."'");
+		$row=mysqli_fetch_row($result);
+		if($row[0]==0){
+			echo "Your shopping cart is empty.";
+		}else{
+			echo "Grandtotal = ".$grandtotal;
+			echo "<h2><a href='checkout.php'>Proceed to checkout</a></h2>";
+			echo "</div>";
+		}
 ?>

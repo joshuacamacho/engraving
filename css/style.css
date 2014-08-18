@@ -81,7 +81,7 @@ body {
     #dashmiddle form input {
       margin: 0; }
     #dashmiddle form input:nth-child(1) {
-      height: 30px;
+      height: 24px;
       width: 198px;
       font-size: 14px;
       font-family: "Roboto", sans-serif; }
@@ -94,7 +94,7 @@ body {
       text-align: center;
       background: #666666;
       width: 60px;
-      height: 36px; }
+      height: 30px; }
     #dashmiddle form #submit:hover {
       background: #3786af; }
   #dashmiddle h1 {
