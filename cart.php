@@ -7,10 +7,12 @@
 	echo "<div class='cartcontainer'>";
 	$userid=$_SESSION['userid'];
 
-		if( isset($_POST['itemid']) && isset($_POST['quantity']) ){
+		if( isset($_POST['itemid']) && isset($_POST['quantity']) &&isset($_POST['engravetext'])){
 			$itemid=htmlentities(mysqli_real_escape_string($link,$_POST['itemid']));
 			$quantity=htmlentities(mysqli_real_escape_string($link,$_POST['quantity']));
-			$query="INSERT INTO cart (itemid,quantity,userid) VALUES ('".$itemid."','".$quantity."','".$userid."')";
+			$text=$_POST['engravetext'];
+			echo $text;
+			$query="INSERT INTO cart (itemid,quantity,userid,text) VALUES ('".$itemid."','".$quantity."','".$userid."','".$text."')";
 			$result=$link->query($query);
 			echo "Item added to cart";
 		}
@@ -31,8 +33,9 @@
 				echo "<p>".$itemrow['name']."</p>";
 				echo "<img src='img/".$itemrow['pictureurl']."' width='60px'>";
 				echo $itemrow['description'];
+				echo $row['text'];
 				echo "Quantity: ".$row['quantity']." ";
-				echo "Total Cost= ".$itemrow['price']*$row['quantity'];
+				echo "Total Cost= $".sprintf('%01.2f', ($itemrow['price']*$row['quantity']));
 				$grandtotal+=$itemrow['price']*$row['quantity'];
 				echo "</div>";
 			}
@@ -49,8 +52,9 @@
 		if($row[0]==0){
 			echo "Your shopping cart is empty.";
 		}else{
-			echo "Grandtotal = ".$grandtotal;
+			echo "Grandtotal = $".sprintf('%01.2f', $grandtotal);
 			echo "<h2><a href='checkout.php'>Proceed to checkout</a></h2>";
 			echo "</div>";
 		}
+		include("footer.php");
 ?>

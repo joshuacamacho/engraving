@@ -29,7 +29,7 @@
 				<a href="../logout.php"><div>Logout</div></a>
 		</div>
 
-		<div id="dashmiddle">
+		<div id="dashmiddle" <?php if(isset($_GET['mode']))echo "class='middleset'"?>>
 			<?php
 			
 				if(isset($_GET['mode'])){
@@ -185,6 +185,7 @@
 					echo "<tr>";
 					echo "<td>Order ID</td>";
 					echo "<td>Item Name</td>";
+					echo "<td>Text</td>";
 					echo "<td>Quantitiy</td>";
 					echo "<td>Order Total</td>";
 					echo "<td>Date Placed</td>";
@@ -227,7 +228,7 @@
 						
 						while($rowb = mysqli_fetch_assoc($resultb)){
 							echo "<td><a target='blank' href='../catalog.php?itemid=".$item."'>".$rowb['name']."</a></td>";
-							
+							echo "<td><div class='texthide".$orderid."'>".$row['text']."</div></td>";
 							//order quantity + price
 							echo "<td>".$row['quantity']."</td>";//qt
 							echo "<td>$".sprintf('%01.2f', ($row['quantity']*$rowb['price']) )."</td>";//price
@@ -311,8 +312,9 @@
 						while($row=mysqli_fetch_array($result)){
 							echo "<h1>".$row['name']."</h1>";
 							echo "<h3>Picture</h3><img src='../img/".$row['pictureurl']."'>";
-							echo "<h3>Description</h3><h1>".$row['description']."</h1>";
-							echo "<h3>Price</h3><h1>$".sprintf('%01.2f', $row['price'])."</h1>";
+							echo "<form action='./?mode=catalog&id=".$itemid."' method='post'><input type='file'><input type='submit' value='Update Picture'></form>";
+							echo "<h3>Description</h3><h3>".$row['description']."</h3>";
+							echo "<h3>Price</h3><h3>$".sprintf('%01.2f', $row['price'])."</h3>";
 
 						
 						echo "<form action='./?mode=catalog&id=".$itemid."' method='post'>

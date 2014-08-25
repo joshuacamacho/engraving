@@ -19,7 +19,7 @@
 		}*/
 	while($row=mysqli_fetch_array($result)){
 		echo "<h1>".$row['firstname']." ".$row['lastname']."</h1>";
-		echo "<h3>Email<h3><h1>".$row['email']."</h1>";
+		echo "<h3>Email</h3><h1>".$row['email']."</h1>";
 	}
 
 	//show orders
@@ -27,6 +27,7 @@
   echo "<td>Order ID</td>";
 	echo "<td>Item Name</td>";
 	echo "<td>Description</td>";
+	echo "<td>Enscription Text</td>";
 	echo "<td>Quantitiy</td>";
 	echo "<td>Order Total</td>";
 	echo "<td>Date Placed</td>";
@@ -43,6 +44,7 @@
 		while($row2 = mysqli_fetch_assoc($result2)){
 			echo "<td>".$row2['name']."</td>";
 			echo "<td>".$row2['description']."</td>";
+			echo "<td>".$row['text']."</td>";
 			//order quantity + price
 			echo "<td>".$row['quantity']."</td>";//qt
 			echo "<td>$".sprintf('%01.2f', ($row['quantity']*$row2['price']) )."</td>";//price
@@ -58,7 +60,7 @@
 		echo "</table>";
 
 	echo "</div>";
-
+	include("footer.php");
 
 
 ?>

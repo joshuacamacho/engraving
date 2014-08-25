@@ -16,32 +16,43 @@
 				}
 			}
 	}
+?>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<?php
 
 
-
-	echo "<div class='header'>
+	echo "<div class='main'>
+				<nav>
+				<div class='titletext'>Engraven Watches</div>
+				<div class='navholder'>
 				<ul>
 				<a href='./'><li>Home</li></a>
 				<a href='catalog.php'><li>Catalog</l1></a>";
 	if(isset($_SESSION['userid'])){
 		echo "<a href='profile.php'><li>Profile</li></a>
 					<a href='cart.php'><li>Cart</li></a>
-					<a href='logout.php'><li>Log Out</l1></a>
+					<a href='logout.php'><li>Log Out</li></a>
 					</ul>";
 	}else{
 	 		echo "<a href='register.php'><li>Register</li></a>
-						</ul>
-						</div>";
+						</ul>";
 
 			echo "
-				login
 				<form action='' method='post'>
-				<input type='text' name='email'>
-				<input type='password' name='password'>
-				<input type='submit'>
+				<input type='text' name='email' placeholder='email'>
+				<input type='password' name='password' placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;'>
+				<input type='submit' value='Login' class='loginbutton'>
 				</form>
-	    ";
+				
+				
+				";
+
+
 	  }
+	  echo "</div></nav>"
 
 ?>
 

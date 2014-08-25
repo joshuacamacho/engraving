@@ -15,7 +15,8 @@
 			$itemid=$row['itemid'];
 			$quantity=$row['quantity'];
 			$date= date("Y-m-d H:i:s");
-			$orderquery="INSERT INTO orders (userid,itemid,quantity,timeordered,status) VALUES ('".$userid."','".$itemid."','".$quantity."','".$date."','Ordered')";
+			$text=$row['text'];
+			$orderquery="INSERT INTO orders (userid,itemid,quantity,timeordered,status,text) VALUES ('".$userid."','".$itemid."','".$quantity."','".$date."','Ordered','".$text."')";
 			$orderresult=$link->query($orderquery);
 			if(!$orderresult){
 				die(mysql_error());
@@ -38,8 +39,9 @@
 				echo "<p>".$itemrow['name']."</p>";
 				echo "<img src='img/".$itemrow['pictureurl']."' width='60px'>";
 				echo $itemrow['description'];
-				echo "Quantity: ".$row['quantity']." ";
-				echo "Total Cost= ".$itemrow['price']*$row['quantity'];
+				echo $row['text'];
+				echo " Quantity: ".$row['quantity']." ";
+				echo "Price $".sprintf('%01.2f', ($itemrow['price']*$row['quantity']));
 				echo "</div>";
 				//calculate grand total
 				$grandtotal+=$itemrow['price']*$row['quantity'];
@@ -48,7 +50,7 @@
 			
 			
 			}
-			echo "Grandtotal ".$grandtotal;
+			echo "Grandtotal $".sprintf('%01.2f', $grandtotal);
 			echo "<form action='' method='POST'>
 						<input type='submit' value='Place Order'>
 						<input type='hidden' name='placeorder' value='true'>
@@ -57,4 +59,5 @@
 		}
 
 		echo "</div>";
+		include("footer.php");
 ?>
