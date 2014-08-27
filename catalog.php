@@ -48,7 +48,7 @@
 	}
 	}else{//no get set display full catalog
 		//pagination
-		$query="SELECT COUNT(itemid) FROM items";
+		$query="SELECT COUNT(itemid) FROM items WHERE stocklevel='In Stock' OR stocklevel='Out of Stock'";
 		$result=$link->query($query);
 		$row=mysqli_fetch_row($result);
 		//total row count
