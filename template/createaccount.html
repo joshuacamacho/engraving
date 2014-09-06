@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Timeless Pieces</title>
+<meta name="keywords" content="watches, engraving, jewelry, business" />
+<meta name="description" content="Company Name is a Watch engraving company that can customize watches for personal and business use" />
+<!-- style sheet -->
+<link href="main_style.css" rel="stylesheet" type="text/css" />
+<!--Validation Functions-->
+		<script>
+			function Validate_First_Name(){
+				var x = document.forms["contForm"]["First_Name"].value;
+				var re = new RegExp(/^\s*[A-Z][a-z]{1,15}([A-Z][a-z]{1,10})?(([-\s][A-Z][a-z]{1,15})|([A-Z][a-z]{1,15}))?\s*$/);
+				var m = re.exec(x);//m is for 'match'
+				if (m==null){
+					alert("Sorry, Something went wrong please fill in your First name correctly!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_Last_Name(){
+				var x = document.forms["contForm"]["Last_Name"].value;
+				var re = new RegExp(/^\s*(([A-Z][a-z]{1,15})([-][A-Z][a-z]{1,15})?.*(\s+[A-Z][a-z]{1,10})?|([A-Z][a-z'][a-zA-Z][a-z]{1,15}))\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Sorry, Something went wrong please fill in your Last name correctly!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_User_Name(){
+				var x = document.forms["contForm"]["User_Name"].value;
+				var re = new RegExp(/^\s*(([A-Z][a-z]{1,15})([-][A-Z][a-z]{1,15})?.*(\s+[A-Z][a-z]{1,10})?|([A-Z][a-z'][a-zA-Z][a-z]{1,15}))\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Sorry, Something went wrong please fill in your Username correctly!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_Street(){
+				var x = document.forms["contForm"]["Street"].value;
+				var re = new RegExp(/^\s*([1-9]|[1-9][0-9]|[1-9][0-9]{2,9})\s+[A-Z][a-z]{1,15}.*(\s+[A-Z][a-z]{1,15})?\s+[A-Z][a-z]{1,10}([.])?\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Sorry, Something went wrong please fill in your correct Street Number and Name!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_City(){
+				var x = document.forms["contForm"]["City"].value;
+				var re = new RegExp(/^\s*[A-Z][a-z]{2,15}.*(\s+[A-Z][a-z]{2,15})?\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Sorry, Something went wrong please fill in your City correctly!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_Zip(){
+				var x = document.forms["contForm"]["Zip"].value;
+				var re = new RegExp(/^\s*[0-9]{5}([-\s][0-9]{4})?\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Please fill in the correct Zipcode format! 5- or 9-digit (e.g. 12345 or 12345-6789)!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_Home_Phone(){
+				var x = document.forms["contForm"]["Home_Phone"].value;
+				var re = new RegExp(/^\s*([(\s])?[1-9][0-9]{2}[-\s|)\s](\s)?[1-9][0-9]{2}[-\s][0-9]{4}\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Please, enter your correct Home Phone number!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_Cellphone(){
+				var x = document.forms["contForm"]["Cellphone"].value;
+				var re = new RegExp(/^\s*([(\s])?[1-9][0-9]{2}[-\s|)\s](\s)?[1-9][0-9]{2}[-\s][0-9]{4}\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Please, enter your correct Cell Phone number!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			function Validate_Email(){
+				var x = document.forms["contForm"]["Email"].value;
+				var re = new RegExp(/^\s*((.*\d)?(.*[a-z])?.{5,20})[@][a-z]{4,15}[.][a-z]{2,4}([.][a-z]{2,4})?\s*$/);
+				var m = re.exec(x);
+				if (m==null){
+					alert("Please, enter your correct Email address!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			
+			function validateForm(){
+				if(!Validate_First_Name())return false;
+				if(!Validate_Last_Name())return false;
+				if(!Validate_User_Name())return false;
+				if(!Validate_Email())return false;
+				if(!Validate_Home_Phone())return false;
+				if(!Validate_Cellphone())return false;
+				if(!Validate_Street())return false;
+				if(!Validate_City())return false;
+				if(!Validate_Zip())return false;
+				
+				return true;
+			}
+		</script>
+
+
+</head>
+
+<body>
+<div id="container">
+<div id="top_panel">
+    	<div id="socialmedia">
+			<a href="#"><img src="images/twitter.png" alt="twitter icon" /></a>
+            <a href="#"><img src="images/facebook.png" alt="facebook icon" /></a>
+            <a href="#"><img src="images/instagram.png" alt="instagram icon" /></a>
+            <a href="#"><img src="images/yelp.png" alt="yelp icon" /></a>
+            
+        </div>
+          <!--space holder for shopping cart-->
+        <div id="shopping_cart">Shopping Cart <span>(<a href="#">0 items</a>)</span></div>
+  </div>
+     <div id="header">
+     	<img src="images/logo.gif" alt="Company logo" border="0" /></a>
+     <img style="float: right;" src="images/logopic.jpg" alt="Advertisment" />
+     </div>
+     <div id=banner><img src="images/slideshow5.jpg" alt="Company logo" border="0" /></a></div>
+<div id="menu_panel">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About Us</a></li>  
+            <li><a href="contact.html">Contact Us</a></li> 
+            <li><a href="userlogin.html">User Login</a></li>                     
+        </ul> 
+  </div> <!-- end of menu -->
+  <div id="content">
+    
+   	  <div id="content_left">
+               <!-- makes layout space -->          
+            
+             
+             <h2 id="label">Create User Account</h2>
+   <div class="form_settings">
+	<p>Fill out all Required Areas indicated with (*)</p>
+    <form action="useraccount.html" onsubmit="return validateForm()" method="get" name="contForm">
+	
+    <p>*First Name: 
+      <input name="First_Name" type="text" size="50" maxlength="33" /></p>
+	<p>*Last Name: 
+		<input name="Last_Name" type="text" size="50" maxlength="33" /></p>
+    <p>*Username: 
+		<input name="User_Name" type="text" size="50" maxlength="33" /></p>
+    <p>*E-mail: 
+		<input name="Email" type="text" size="50" maxlength="50" /></p>
+    <p>*Home Phone: 
+		<input name="Home_Phone" size="50" maxlength="50" type="text" />
+	</p>
+	<p>Cell Phone: 
+		<input name="Cellphone" size="50" maxlength="50" type="text" />
+	</p>	
+        		
+		<p><label>*Address</label><br />
+        	<label>*Street:</label><input name="Street" size="50" maxlength="50" type="text" /><br />
+        	<label>*City:</label>	<input name="City" size="50" maxlength="50" type="text" /><br />
+        		<label>*State:</label><select name="State" >
+					<option value="AK">AK</option>
+					<option value="AL">AL</option>
+					<option value="AR">AR</option>
+					<option value="AZ">AZ</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DC">DC</option>
+					<option value="DE">DE</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="IA">IA</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="MA">MA</option>
+					<option value="MD">MD</option>
+					<option value="ME">ME</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MO">MO</option>
+					<option value="MS">MS</option>
+					<option value="MT">MT</option>
+					<option value="NC">NC</option>
+					<option value="ND">ND</option>
+					<option value="NE">NE</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NV">NV</option>
+					<option value="NY">NY</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VA">VA</option>
+					<option value="VT">VT</option>
+					<option value="WA">WA</option>
+					<option value="WI">WI</option>
+					<option value="WV">WV</option>
+					<option value="WY">WY</option>
+				</select><br />
+        		<label>*Zip:</label><input name="Zip" type="text" /></p><br/><br/>
+				
+				
+     
+	<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="submit" value="submit" /></p>
+	<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="reset" name="reset" value="clear form" /></p>
+        	</form>
+    
+        	
+        
+       </div> 
+                
+                <!-- makes layout space -->          
+             <div class="spacer_with_height">&nbsp;</div>
+             
+    	</div>
+         
+    	<!-- end of content left -->
+        
+        <div id="content_right">
+        	<div class="right_section">
+            	<h4 class="right_header">Search</h4>
+                <div class="right_section_content">
+                    <form method="get" action="#">
+                            <input name="keyword" type="text" id="keyword"/>
+                            <input type="submit" name="submit" class="button" value="Search" />
+                  </form>
+              </div>
+            </div>
+            
+            <div class="right_section">
+            	<h4 class="right_header">Engraving Products</h4>
+                <div class="right_section_content">
+                    <ul>
+                        <li><a href="#">Men's Silver Watches</a></li>
+                        <li><a href="#">Men's Gold Watches</a></li>
+                        <li><a href="#">Women's Silver Watches</a></li>
+                        <li><a href="#">Women's Gold Wathes</a></li>
+                        <li><a href="#">Pocket Watches</a></li>
+                       
+                    </ul>
+                </div>
+            </div>
+
+            
+        </div> <!-- end of content right-->
+        
+        <div class="spacer">&nbsp;</div>
+    </div>
+    
+     <div id="footer_panel">
+        <div id="footer_left">
+            <img src="images/mastercard.gif" alt="Master Card" /><img src="images/visa.gif" alt="Visa Card" /><img src="images/paypal.gif" alt="PayPal" />
+        </div>
+        <div id="footer_right">
+            Copyright © 2014 by Alpha 7 Web Design<br />
+			
+        </div>
+        
+       <div class="spacer">&nbsp;</div>
+    </div>
+</div>
+ 
+  
+</body>
+</html>
