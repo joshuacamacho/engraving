@@ -3,7 +3,6 @@
 
 	//log the user in if login form was used
 	if(isset($_POST['email']) && isset($_POST['password'])){
-			require_once("connect.php");
 			$email=mysqli_real_escape_string($link,$_POST['email']);
 			$password=sha1(mysqli_real_escape_string($link,$_POST['password']));
 			$query="SELECT password,userid FROM users WHERE email='".$email."'";
@@ -17,20 +16,52 @@
 			}
 	}
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Timeless Pieces</title>
+<meta name="keywords" content="watches, engraving, jewelry, business" />
+<meta name="description" content="Company Name is an engraving company that can customize watches for personal and business use" />
+<head>
+	<link href="css/main_style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+<script src="js/jquery-func.js" type="text/javascript"></script>
 </head>
 
 <?php
 
 
-	echo "<div class='main'>
-				<nav>
-				<div class='titletext'>Engraven Watches</div>
-				<div class='navholder'>
-				<ul>
-				<a href='./'><li>Home</li></a>
-				<a href='catalog.php'><li>Catalog</l1></a>";
+	echo "<div id='container'>
+				<div id='top_panel'>
+    	<div id='socialmedia'>
+			<a href='#'><img src='images/twitter.png' alt='twitter icon' /></a>
+            <a href='#'><img src='images/facebook.png' alt='facebook icon' /></a>
+            <a href='#'><img src='images/instagram.png' alt='instagram icon' /></a>
+            <a href='#'><img src='images/yelp.png' alt='yelp icon' /></a>
+            
+        </div>
+        <!--space holder for shopping cart-->
+        <div id='shopping_cart'>Shopping Cart <span>(<a href='#'>0 items</a>)</span></div>
+</div>";
+
+?>
+
+<div id="menu_panel">
+        <ul>
+            <li><a href="./" class="page">Home</a></li>
+            <li><a href="catalog.php">Catalog</a></li>
+            <li><a href="about.php">About Us</a></li>  
+            <li><a href="contact.php">Contact Us</a></li> 
+            <li><a href="userlogin.html">User Login</a></li>                     
+        </ul> 
+  </div>
+
+
+<?php
+
+
 	if(isset($_SESSION['userid'])){
 		echo "<a href='profile.php'><li>Profile</li></a>
 					<a href='cart.php'><li>Cart</li></a>
@@ -52,7 +83,7 @@
 
 
 	  }
-	  echo "</div></nav>"
+	  
 
 ?>
 
