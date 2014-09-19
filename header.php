@@ -54,21 +54,21 @@
             <li><a href="catalog.php">Catalog</a></li>
             <li><a href="about.php">About Us</a></li>  
             <li><a href="contact.php">Contact Us</a></li> 
-            <li><a href="userlogin.html">User Login</a></li>                     
-        </ul> 
-  </div>
+                                 
+        
+  
 
 
 <?php
 
 
 	if(isset($_SESSION['userid'])){
-		echo "<a href='profile.php'><li>Profile</li></a>
+		echo "<li><a href='profile.php'>Profile</a></li>
 					<a href='cart.php'><li>Cart</li></a>
 					<a href='logout.php'><li>Log Out</li></a>
 					</ul>";
 	}else{
-	 		echo "<a href='register.php'><li>Register</li></a>
+	 		echo "<li><a href='register.php'>Register</a></li>
 						</ul>";
 
 			echo "
@@ -80,7 +80,7 @@
 				
 				
 				";
-
+				echo "</div>";
 
 	  }
 	  

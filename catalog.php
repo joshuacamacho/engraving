@@ -1,7 +1,8 @@
 <?php
 	include("header.php");
 	require_once("connect.php");
-	echo "<div class='catalogcontainer'>";
+	echo "<div id='content' class='catalogcontainer'>
+				<div id='content_left'>";
 	//get is set, display only one item
 	if(isset($_GET['itemid'])&& !empty($_GET['itemid'])){
 		$itemid=mysqli_real_escape_string($link,$_GET['itemid']);
@@ -54,7 +55,7 @@
 		//total row count
 		$rows=$row[0];
 		//the number of results displayed per page
-		$page_rows = 1;
+		$page_rows = 6;
 		// this is the page number of our last page
 		$last=ceil($rows/$page_rows);
 		// makes sure last cannot be less than one
@@ -106,16 +107,20 @@
 	    }
 
 
-	    echo "<div class='pagination'>".$paginationCtrls."</div>";
+	    echo "
+	    <h2 id='label'>Catalog</h2>
+	    <div class='pagination'>".$paginationCtrls."</div>";
 		while($row=mysqli_fetch_array($result)){
 			if($row['stocklevel']!='No longer sold'){
-				echo "<div class='itemcontainer'>
+				echo "<div class='product_box'>
+							<h3 class='product_name'>".$row['name']."</h3>
 							<a href='catalog.php?itemid=".$row['itemid']."'>
 							<img src='img/".$row['pictureurl']."' width='150px'></a>
-							<h3>Item Name</h3>
-							<h1>".$row['name']."</h1>
-							<h5>".$row['description']."
-							<h5>$".sprintf('%01.2f', $row['price'])."</h5>
+							
+							
+							<p>".$row['description']."</p>
+							<div class='price'>PRICE:<span>$".sprintf('%01.2f', $row['price'])."</span></div>
+							<div class='buynow'><a href='catalog.php?itemid=".$row['itemid']."'>Buy Now</a></div>
 							</div>
 				";
 			}	

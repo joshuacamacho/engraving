@@ -244,7 +244,7 @@ p {
 
 #menu_panel ul {
 	float: left;
-	width: 930px;
+	width: 555px;
 	margin: 0;
 	padding: 5px 0 0 0;
 	list-style: none;
@@ -269,10 +269,27 @@ p {
 #menu_panel li a:hover, #menu_panel li .page{
 	color: #FFFFFF;
 }
+
+#menu_panel form{
+	padding: 7px 0 0 0;
+}
+#menu_panel form input{
+	display:inline-block;
+
+}
+#menu_panel form input:nth-child(-n+2){
+	width:80px;
+	height:20px;
+}
+#menu_panel form input:nth-child(3){
+	width:60px;
+	height:20px;
+}
 /* end of menu */
 
 /* content */
 #content{
+	min-height: 600px;
 	width: 880px;
 	padding: 30px 30px 0 30px;
 	background-color: #2E2E2E;
@@ -280,7 +297,7 @@ p {
 
 #content #content_left {
 	float: left;
-	width: 630px;
+	width: 862px;
 }
 
 #content_left .product_box {
@@ -296,6 +313,7 @@ p {
 #content #content_right {
 	float: right;
 	width: 220px;
+	display: none;
 }
 
 /*right section styles */
