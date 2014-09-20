@@ -23,7 +23,15 @@ $(document).ready(function() {
 	});*/
 
 	console.log(maxheight);
-
+	$('.showorder').click(function(){
+		var classes = $(this).attr('class').split(" ");
+		var theclass=".ordertext";
+		theclass+=classes[0].substr(5);
+		console.log(theclass);
+		$(theclass).css({
+			'display':'block'
+		});
+	});
 
 
 });

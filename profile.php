@@ -44,7 +44,8 @@
 		while($row2 = mysqli_fetch_assoc($result2)){
 			echo "<td>".$row2['name']."</td>";
 			echo "<td>".$row2['description']."</td>";
-			echo "<td>".$row['text']."</td>";
+			echo "<td><a class='order".$row['orderid']." showorder'>Click to See</a></td>";
+			echo "<td class='ordertext".$row['orderid']." ordertext'>".$row['text']."</td>";
 			//order quantity + price
 			echo "<td>".$row['quantity']."</td>";//qt
 			echo "<td>$".sprintf('%01.2f', ($row['quantity']*$row2['price']) )."</td>";//price

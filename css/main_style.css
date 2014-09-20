@@ -294,6 +294,22 @@ p {
 
 /* end of menu */
 
+/*orders */
+.ordertext{
+	display:none;
+	position:absolute;
+	min-height: 300px;
+	min-height: 300px;
+	left: 25%;
+	top:50%;
+	padding:30px;
+	background: black;
+}
+
+
+
+
+
 /* content */
 #content{
 	min-height: 600px;
