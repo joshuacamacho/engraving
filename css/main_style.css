@@ -298,8 +298,8 @@ p {
 .ordertext{
 	display:none;
 	position:absolute;
-	min-height: 300px;
-	min-height: 300px;
+	min-height: 200px;
+	min-width: 300px;
 	left: 440px;
 	top:300px;
 	padding:30px;
@@ -308,7 +308,9 @@ p {
 }
 
 
-
+.showorder{
+	cursor: pointer; cursor: hand;
+}
 
 
 /* content */
