@@ -126,6 +126,6 @@
 			}	
 		}
 	}
-	echo "</div>";
+	echo "</div></div>";
 	include("footer.php");
 ?>

@@ -8,7 +8,7 @@
 	$userid=$_SESSION['userid'];
 	include("header.php");
 	//show user info
-	echo "<div class='profilecontainer'>";
+	echo "<div id='content' class='profilecontainer'>";
 	echo "<h3>Name</h3>";
 	$query="SELECT firstname,lastname,email FROM users WHERE userid='".$userid."'";
 	$result=$link->query($query);
