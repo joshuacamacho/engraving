@@ -32,6 +32,9 @@ $(document).ready(function() {
 			'display':'block'
 		});
 	});
+	$(".ordertext").click(function(){
+		$(this).hide();
+	});
 
 
 });

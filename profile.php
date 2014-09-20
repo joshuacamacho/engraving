@@ -34,6 +34,7 @@
 	echo "<td>Status</td>";
 	$result = $link->query("SELECT * FROM orders WHERE userid=$userid");
 	while($row=mysqli_fetch_array($result)){
+		echo "<div class='ordertext".$row['orderid']." ordertext'>".$row['text']."<p>Click to Close</p></div>";
 		echo "<tr>";
 		echo "<td>".$row['orderid']."</td>";
 		//give item description
@@ -45,7 +46,7 @@
 			echo "<td>".$row2['name']."</td>";
 			echo "<td>".$row2['description']."</td>";
 			echo "<td><a class='order".$row['orderid']." showorder'>Click to See</a></td>";
-			echo "<td class='ordertext".$row['orderid']." ordertext'>".$row['text']."</td>";
+			
 			//order quantity + price
 			echo "<td>".$row['quantity']."</td>";//qt
 			echo "<td>$".sprintf('%01.2f', ($row['quantity']*$row2['price']) )."</td>";//price

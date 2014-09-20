@@ -300,10 +300,11 @@ p {
 	position:absolute;
 	min-height: 300px;
 	min-height: 300px;
-	left: 25%;
-	top:50%;
+	left: 440px;
+	top:300px;
 	padding:30px;
-	background: black;
+	background: #564F54;
+	border: 10px solid #473F3F;
 }
 
 
