@@ -35,21 +35,22 @@
 
 	echo "<div id='container'>
 				<div id='top_panel'>
-    	<div id='socialmedia'>
-			<a href='#'><img src='images/twitter.png' alt='twitter icon' /></a>
-            <a href='#'><img src='images/facebook.png' alt='facebook icon' /></a>
-            <a href='#'><img src='images/instagram.png' alt='instagram icon' /></a>
-            <a href='#'><img src='images/yelp.png' alt='yelp icon' /></a>
-            
-        </div>
-        <!--space holder for shopping cart-->
-        <div id='shopping_cart'>Shopping Cart <span>(<a href='#'>0 items</a>)</span></div>
-</div>";
+    	
+        <!--space holder for shopping cart-->";
+  if(isset($_SESSION['userid'])) {
+  	$query="SELECT COUNT(*) FROM cart WHERE userid='".$_SESSION['userid']."'";
+  	$result=$link->query($query);
+  	$cartnum=mysqli_fetch_array($result);
+        echo "<div id='shopping_cart'>Shopping Cart <span>(<a href='cart.php'>".$cartnum[0]." items</a>)</span></div>";
+  }
+echo "</div>";
 
 ?>
 
 <div id="menu_panel">
-        <ul>
+        <ul class=<?php if(isset($_SESSION['userid']))echo "'.loggedinuser'";
+        else echo "'.loggedoutuser'";?>
+        >
             <li><a href="./" class="page">Home</a></li>
             <li><a href="catalog.php">Catalog</a></li>
             <li><a href="about.php">About Us</a></li>  
@@ -64,9 +65,10 @@
 
 	if(isset($_SESSION['userid'])){
 		echo "<li><a href='profile.php'>Profile</a></li>
-					<a href='cart.php'><li>Cart</li></a>
-					<a href='logout.php'><li>Log Out</li></a>
+					<li><a href='cart.php'>Cart</a></li>
+					<li><a href='logout.php'>Log Out</a></li>
 					</ul>";
+					echo "</div>";
 	}else{
 	 		echo "<li><a href='register.php'>Register</a></li>
 						</ul>";
