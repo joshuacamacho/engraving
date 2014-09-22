@@ -187,9 +187,25 @@ nav form {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis; }
+.ordertext{
+	display:none;
+	position:absolute;
+	min-height: 200px;
+	min-width: 300px;
+	left: 440px;
+	top:300px;
+	padding:30px;
+	background: #564F54;
+	border: 10px solid #473F3F;
+}
 
+
+.showorder{
+	cursor: pointer; cursor: hand;
+}
+	  
 #dashright {
-  width: 800px;
+  width: 780px;
   font-size: 16px;
   display: inline-block;
   vertical-align: top; }

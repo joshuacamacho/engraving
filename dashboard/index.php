@@ -218,7 +218,7 @@
 						$item=$row['itemid'];
 						$status=$row['status'];
 						$orderid=$row['orderid'];
-
+						echo "<div class='ordertext".$row['orderid']." ordertext'>".$row['text']."<p>Click to Close</p></div>";
 						if($orderidupdate==$orderid) echo "<tr class='updated'><td colspan='7'> Updated Order &darr; </td></tr>";
 						echo "<tr>";
 						echo "<td>".$row['orderid']."</td>";
@@ -228,7 +228,7 @@
 						
 						while($rowb = mysqli_fetch_assoc($resultb)){
 							echo "<td><a target='blank' href='../catalog.php?itemid=".$item."'>".$rowb['name']."</a></td>";
-							echo "<td><div class='texthide".$orderid."'>".$row['text']."</div></td>";
+							echo "<td><a class='order".$row['orderid']." showorder'>Click to see Engrave Text</a></td>";
 							//order quantity + price
 							echo "<td>".$row['quantity']."</td>";//qt
 							echo "<td>$".sprintf('%01.2f', ($row['quantity']*$rowb['price']) )."</td>";//price
