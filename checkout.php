@@ -5,7 +5,7 @@
 	}
 
 	include("header.php");
-	echo "<div class='checkoutcontainer'>";
+	echo "<div id='content'>";
 	$userid=$_SESSION['userid'];
 	$query="SELECT * FROM cart WHERE userid='".$userid."'";
 	$result=$link->query($query);

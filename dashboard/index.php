@@ -1,7 +1,7 @@
 <?php
 	require_once('../connect.php');
 	
-	if(isset($_SESSION['userid']) && $_SESSION['userid']==1){
+	if(isAdmin()){
 		//echo "all good";
 		//all good
 	}else{
@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
 	<div class="dashboard">
 
 		<div id="dashleft">
@@ -31,122 +32,14 @@
 
 		<div id="dashmiddle" <?php if(isset($_GET['mode']))echo "class='middleset'"?>>
 			<?php
-			
+				
 				if(isset($_GET['mode'])){
 					if($_GET['mode']=='users' ){
-						//if search has been used
-						
-						
-						
-						//pagination
-						$query="SELECT COUNT(userid) FROM users";
-						$addon='';
-						if(isset($_POST['searchname'])){
-						  $search=htmlentities(mysqli_real_escape_string($link,$_POST['searchname']));
-						  $search=explode(" ", $search);
-						  //echo "<pre>".print_r($search)."</pre>";
-						  if(count($search)==1){
-						    $addon.=" WHERE firstname='".$search[0]."'";
-						    
-						  }else if(count($search==2)){
-						    $addon.=" WHERE firstname='".$search[0]."'";
-						    $addon.="AND lastname='".$search[1]."'";
-						  }
-						  $query.=$addon;
-						  //echo $query;
-						}
-						$result=$link->query($query);
-						$row=mysqli_fetch_row($result);
-						//total row count
-						$rows=$row[0];
-						//the number of results displayed per page
-						$page_rows = 20;
-						// this is the page number of our last page
-						$last=ceil($rows/$page_rows);
-						// makes sure last cannot be less than one
-						if($last<1) $last= 1;
-						// establish $pagenum
-						$pagenum = 1;
-						// get pagenum from URL vars if it is present, else its = 1
-						if(isset($_GET['pn'])){
-							$pagenum = preg_replace('#[^0-9]#','',$_GET['pn']);
-						}
-						// this makes sure pagenum isnt below 1 or more than our $last page
-						if($pagenum<1){
-							$pagenum = 1;
-						}else if ($pagenum > $last){
-							$pagenum = $last;
-						}
-						$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-
-						
-
-						$querya="SELECT * FROM users".$addon." $limit";
-						$result = $link->query($querya);
-
-						$paginationCtrls = '';
-						// if there is more than one page of results
-						if($last != 1){
-							if( $pagenum > 1 ){
-								$previous = $pagenum - 1;
-								$paginationCtrls.="<a href='./?mode=users&pn=".$previous."'><div><</div></a>";
-								for($i = $pagenum - 3; $i < $pagenum; $i++){
-									if($i > 0){
-										$paginationCtrls.="<a href='./?mode=users&pn=".$i."'><div>".$i."</div></a>";
-									}
-								}
-							}
-						}
-						$paginationCtrls .= '<div><span>'.$pagenum.'</span></div>';
-						// Render clickable number links that should appear on the right of the target page number
-						for($i = $pagenum+1; $i <= $last; $i++){
-							$paginationCtrls .= '<a href="./?mode=users&pn='.$i.'"><div>'.$i.'</div></a>';
-							if($i >= $pagenum+3){
-								break;
-							}
-						}
-						// This does the same as above, only checking if we are on the last page, and then generating the "Next"
-					    if ($pagenum != $last) {
-					        $next = $pagenum + 1;
-					        $paginationCtrls .= '<a href="./?mode=users&pn='.$next.'"><div>></div></a>';
-					    }
-
-
-						echo "<h1><span>Customers</span></h1>";
-						echo "<form action='./?mode=users' method='POST'>
-										<input type='text' name='searchname'>
-										<input id='submit' type='submit' value='Search'>
-									</form>
-									";
-						echo "<div class='pagination'>".$paginationCtrls."</div>";
-						echo "<div class='middlelist'>";
-						while( $row = mysqli_fetch_array($result) ){
-							
-							echo "<a href='./?mode=users&pn=".$pagenum."&id="
-							.$row['userid']."'><div";
-							if(isset($_GET['id'])&& $row['userid']==$_GET['id'])echo " class='borderleft'";
-							echo ">".$row['firstname']." ".$row['lastname'];
-							echo"</div></a>";
-							
-						}
-						echo "</div>";
+						displayUsers($link);
 					}else	if($_GET['mode']=='catalog'){
-							$query="SELECT * FROM items";
-							$result=$link->query($query);
 
-							echo "<h1><a href='./?mode=catalog&add=new'>Add New</a></h1>";
-							echo "<div class='middlelist'>";
-							while($row=mysqli_fetch_array($result)){
-								echo "<a href='.?mode=catalog&id=".$row['itemid']."'><div";
-								if(isset($_GET['id'])&& $row['itemid']==$_GET['id'])echo " class='borderleft'";
-								echo ">".$row['name'];
-								echo "</div></a>";
-							}
-							echo "</div>";
-						}
-			    
-
-						
+						displayCatalog($link);
+					}
 			}
 					
 				
@@ -160,107 +53,9 @@
 				//user mode right side
 			
 				if( isset($_GET['mode']) && $_GET['mode']=='users' && isset($_GET['id']) ){
-						
-				
-				$orderidupdate="";
-				require_once('../connect.php');
-				$id=mysqli_real_escape_string($link,$_GET['id']);
-				//get basic user data
-				
-				$result = $link->query("SELECT * FROM users WHERE userid=$id");
-				while($row = mysqli_fetch_array($result)){
-					echo "<h3>Customer</h3>";
-					echo "<div class='rightlist'>";							
-					echo "<h1>";
-					echo $row['firstname']." ".$row['lastname'];
-					echo "</h1>";
-					echo "<table><tr>";
-					echo "<td>Email</td><td>".$row['email']."</td> </tr><tr>";
-					echo "<td>Joined</td><td>".$row['datejoined']."</td>";
-				}
-
-					echo "</table>";
-					echo "<h2>Orders</h2>";
-					echo "<table>";
-					echo "<tr>";
-					echo "<td>Order ID</td>";
-					echo "<td>Item Name</td>";
-					echo "<td>Text</td>";
-					echo "<td>Quantitiy</td>";
-					echo "<td>Order Total</td>";
-					echo "<td>Date Placed</td>";
-					echo "<td>Status</td>";
-				
-
-				//for updating order status
-					if(isset($_POST['status'])){
-						
-						$statusupdate=$_POST['status'];
-						$orderidupdate=$_POST['orderid'];
-
-						$query="UPDATE orders SET status='".$statusupdate."' WHERE orderid=$orderidupdate";
-						$update = $link->query($query);
-
-						if (!$update) {
-						    $message  = 'Invalid query: ' . mysql_error() . "\n";
-						    $message .= 'Whole query: ' . $query;
-						    die($message);
-						  }
-
-						  
-						  //print_r($_POST['status']);
-						//echo "<h1>WORKED". print_r($statusupdate)."</h1>";
-					}
-
-					//get orders
-					$result = $link->query("SELECT * FROM orders WHERE userid=$id");
-					while($row = mysqli_fetch_array($result)){
-						$item=$row['itemid'];
-						$status=$row['status'];
-						$orderid=$row['orderid'];
-						echo "<div class='ordertext".$row['orderid']." ordertext'>".$row['text']."<p>Click to Close</p></div>";
-						if($orderidupdate==$orderid) echo "<tr class='updated'><td colspan='7'> Updated Order &darr; </td></tr>";
-						echo "<tr>";
-						echo "<td>".$row['orderid']."</td>";
-						//give item description
-						
-						$resultb = $link->query("SELECT * FROM items WHERE itemid='".$item."'");
-						
-						while($rowb = mysqli_fetch_assoc($resultb)){
-							echo "<td><a target='blank' href='../catalog.php?itemid=".$item."'>".$rowb['name']."</a></td>";
-							echo "<td><a class='order".$row['orderid']." showorder'>Click to see Engrave Text</a></td>";
-							//order quantity + price
-							echo "<td>".$row['quantity']."</td>";//qt
-							echo "<td>$".sprintf('%01.2f', ($row['quantity']*$rowb['price']) )."</td>";//price
-						}
-
-						//order date
-						echo "<td>";
-						echo $row['timeordered'];
-						echo "</td>";
-
-						//order status update form
-						$updatevalues=array(
-						"Ordered",
-						"Processed",
-						"Shipped"
-						);
-						echo "<td><form method='post' action='./?mode=users&pn=".$pagenum."&id=".$id."'><select name='status'>";
-						echo "<option selected='selected' value='".$status."'>".$status."</option>";
-						foreach($updatevalues as $val){
-							echo "<option value='".$val."'>".$val."</option>";
-						}
-						echo "</select><input type='hidden' name='orderid' value='".$orderid."'</td>";
-						echo "<td><input type='submit' value='Update'>";
-						
-						echo "</td>";
-						echo "</form>";
-						echo "</tr>";
-						
-					}
-
-					echo "</table>";
-					echo "</div>";
+						$userid=$_GET['id'];
+						printorders($userid,$link);
+					
 					
 								//catalog item manangement
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['id']) ){
@@ -289,7 +84,7 @@
 
 							$query.=" WHERE itemid='".$itemid."'";
 
-								echo $query;
+								
 				
 							 
 							$update = $link->query($query);
@@ -311,21 +106,22 @@
 						$result=$link->query($query);
 						while($row=mysqli_fetch_array($result)){
 							echo "<h1>".$row['name']."</h1>";
-							echo "<h3>Picture</h3><img src='../img/".$row['pictureurl']."'>";
-							echo "<form action='./?mode=catalog&id=".$itemid."' method='post'><input type='file'><input type='submit' value='Update Picture'></form>";
-							echo "<h3>Description</h3><h3>".$row['description']."</h3>";
-							echo "<h3>Price</h3><h3>$".sprintf('%01.2f', $row['price'])."</h3>";
+							echo "<div class='catalogitemcontainer'><div><img src='../img/".$row['pictureurl']."'>";
+							echo "<form action='./?mode=catalog&id=".$itemid."' method='post'><input type='file'><input type='submit' value='Update Picture'></form></div>";
+
+
+
+							echo "<div><form action='./?mode=catalog&id=".$itemid."' method='post'>
+										<h2>Item Name</h2><input type='text' name='name' value='".$row['name']."'>
+										<h2>Description</h2><textarea name='description'>".$row['description']."</textarea>";
+							echo "<h2>Price</h2>$<input type='text' name='price' value='".sprintf('%01.2f', $row['price'])."'>
+										<input type='submit' value='Update Item'></form>
+										</div></div>
+										
+									";
 
 						
-						echo "<form action='./?mode=catalog&id=".$itemid."' method='post'>
-									<label>Item Name</label>
-									<input type='text' name='name'>
-									<label>Item Description</label>
-									<textarea name='description'></textarea>
-									<label>Item Price</label>
-									<input type='text' name='price'>
-									<input type='submit'>
-									</form>";
+						
 
 						echo "<h3>Stock Level</h3>
 									<form action='./?mode=catalog&id=".$itemid."' method='post'>

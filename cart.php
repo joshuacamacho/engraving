@@ -4,7 +4,7 @@
 		header("Location: index.php");
 	}
 	include("header.php");
-	echo "<div class='cartcontainer'>";
+	echo "<div id='content'>";
 	$userid=$_SESSION['userid'];
 
 		if( isset($_POST['itemid']) && isset($_POST['quantity']) &&isset($_POST['engravetext'])){

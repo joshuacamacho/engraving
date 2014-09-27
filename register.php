@@ -7,10 +7,10 @@
 		isset($_POST['password'])
 		){
 			require_once("connect.php");
-			$firstname=mysqli_real_escape_string($link,$_POST['firstname']);
-			$lastname=mysqli_real_escape_string($link,$_POST['lastname']);
-			$email=mysqli_real_escape_string($link,$_POST['email']);
-			$password=sha1(mysqli_real_escape_string($link,$_POST['password']));
+			$firstname=htmlentities(mysqli_real_escape_string($link,$_POST['firstname']));
+			$lastname=htmlentities(mysqli_real_escape_string($link,$_POST['lastname']));
+			$email=htmlentities(mysqli_real_escape_string($link,$_POST['email']));
+			$password=sha1(htmlentities(mysqli_real_escape_string($link,$_POST['password'])));
 
 			$allvalid=true;
 			$invalid="";
@@ -60,7 +60,9 @@
 			
 	}
 
-	echo "<form action='register.php' method='post'>
+	echo "
+	<div id='content'>
+	<form action='register.php' method='post'>
 				<label>First Name</label>
 				<input type='text' name='firstname'>
 				<label>Last Name</label>
@@ -71,6 +73,7 @@
 				<input type='password' name='password'>
 				<input type='submit'>
 				</form>
+				</div>
 	";
 include("footer.php");
 ?>

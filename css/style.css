@@ -147,6 +147,7 @@ nav form {
       font-family: "Roboto", sans-serif;
       border: 0;
       vertical-align: top;
+      cursor: pointer; cursor: hand;
       text-align: center;
       background: #666666;
       width: 60px;
@@ -196,12 +197,74 @@ nav form {
 	top:300px;
 	padding:30px;
 	background: #564F54;
-	border: 10px solid #473F3F;
+	border: 10px #473F3F solid;
 }
+.ordertable{
+  border-collapse:collapse;
+  width:100%;
+}
+.ordertable tr{
 
+}
+.ordertable tr:nth-child(1){
+  font-family: 'Roboto', sans-serif;
+  color:white;
+  background:#3786af;
+  border:none;
+  
+  
+}
+.ordertable tr:nth-child(even){
+  background: #dadada;
+}
+.ordertable td{
+  font-size: 14px;
+  margin:0;
+  font-family: 'Roboto', sans-serif;
+  padding:5px 5px 5px 0;
+
+}
+.ordertable td:nth-child(1){
+  text-align: center;
+}
 
 .showorder{
 	cursor: pointer; cursor: hand;
+}
+
+.catalogitemcontainer{
+  padding:10px 0 0 0;
+}
+.catalogitemcontainer div{
+  display: inline-block;
+  width:46%;
+  vertical-align: top;
+}
+.catalogitemcontainer textarea{
+  width:100%;
+  height:100px;
+  font-family: 'Roboto', sans-serif;
+}
+.catalogitemcontainer h2{
+  font-family: 'Roboto', sans-serif;
+  margin:0 0 5px 0;
+  padding:0 !important;
+}
+.catalogitemcontainer input:nth-last-child(1){
+  display: block;
+  background:#dadada;
+  font-family: 'Roboto', sans-serif;
+  border:0;
+  padding:5px 8px 5px 8px;
+  color:#222222;
+}
+.catalogitemcontainer input:nth-last-child(1):hover{
+  
+  background:#3786af;
+
+  cursor: pointer; cursor: hand;
+
+  color:white;
 }
 	  
 #dashright {
