@@ -237,7 +237,7 @@
 
 	function onDashboard(){
 		$dash=false;
-		if (substr($_SERVER['REQUEST_URI'],0,21) == "/engraving/dashboard/"){
+		if (preg_match("/dashboard/", $_SERVER['REQUEST_URI'])) {
 			$dash=true;
 		}
 		return $dash;
