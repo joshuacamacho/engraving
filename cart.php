@@ -55,7 +55,7 @@
 		}else{
 			echo "Grandtotal = $".sprintf('%01.2f', $grandtotal);
 			echo "<h2><a href='checkout.php'>Proceed to checkout</a></h2>";
-			echo "</div>";
+			echo "</div></div>";
 		}
 		include("footer.php");
 ?>
