@@ -1,6 +1,6 @@
 <?php
 	require_once('../connect.php');
-	
+	require_once("../core.php");
 	if(isAdmin()){
 		//echo "all good";
 		//all good
@@ -106,7 +106,7 @@
 						$result=$link->query($query);
 						while($row=mysqli_fetch_array($result)){
 							echo "<h1>".$row['name']."</h1>";
-							echo "<div class='catalogitemcontainer'><div><img src='../img/".$row['pictureurl']."'>";
+							echo "<div class='catalogitemcontainer'><div><img src='../images/".$row['pictureurl']."'>";
 							echo "<form action='./?mode=catalog&id=".$itemid."' method='post'><input type='file'><input type='submit' value='Update Picture'></form></div>";
 
 

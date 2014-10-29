@@ -10,7 +10,7 @@
 		$result=$link->query($query);
 		while($row=mysqli_fetch_array($result)){
 			echo "<h3>".$row['name']."</h3>
-						<img src='img/".$row['pictureurl']."'>
+						<img src='images/".$row['pictureurl']."'>
 						<p>".$row['description']."</p>
 						<p>$".sprintf('%01.2f', $row['price'])." per unit</p>";
 			if(isset($_SESSION['userid']) && ($row['stocklevel']=='In Stock')){
@@ -115,7 +115,7 @@
 				echo "<div class='product_box'>
 							<h3 class='product_name'>".$row['name']."</h3>
 							<a href='catalog.php?itemid=".$row['itemid']."'>
-							<img src='img/".$row['pictureurl']."' width='150px'></a>
+							<img src='images/".$row['pictureurl']."' width='150px'></a>
 							
 							
 							<p>".$row['description']."</p>

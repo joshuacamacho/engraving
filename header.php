@@ -1,6 +1,6 @@
 <?php
 	require_once("connect.php");
-
+	require_once("core.php");
 	//log the user in if login form was used
 	if(isset($_POST['email']) && isset($_POST['password'])){
 			$email=mysqli_real_escape_string($link,$_POST['email']);

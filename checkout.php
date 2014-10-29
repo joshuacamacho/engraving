@@ -12,11 +12,15 @@
 	if(isset($_POST['placeorder'])&& $_POST['placeorder']=='true'){
 		//if the order has been submitted
 		while($row=mysqli_fetch_array($result)){
+			$query="SELECT * FROM items where itemid='".$row['itemid']."'";
+			$itemresult=$link->query($query);
+			$iteminfo=mysqli_fetch_array($itemresult);
 			$itemid=$row['itemid'];
 			$quantity=$row['quantity'];
 			$date= date("Y-m-d H:i:s");
 			$text=$row['text'];
-			$orderquery="INSERT INTO orders (userid,itemid,quantity,timeordered,status,text) VALUES ('".$userid."','".$itemid."','".$quantity."','".$date."','Ordered','".$text."')";
+			$totalprice=$row['quantity']*$iteminfo['price'];
+			$orderquery="INSERT INTO orders (userid,itemid,quantity,timeordered,status,text,totalprice) VALUES ('".$userid."','".$itemid."','".$quantity."','".$date."','Ordered','".$text."','".$totalprice."')";
 			$orderresult=$link->query($orderquery);
 			if(!$orderresult){
 				die(mysql_error());
@@ -37,7 +41,7 @@
 			while($itemrow=mysqli_fetch_array($itemresult)){
 				echo "<div class='shoppingcartitem'>";
 				echo "<p>".$itemrow['name']."</p>";
-				echo "<img src='img/".$itemrow['pictureurl']."' width='60px'>";
+				echo "<img src='images/".$itemrow['pictureurl']."' width='60px'>";
 				echo $itemrow['description'];
 				echo $row['text'];
 				echo " Quantity: ".$row['quantity']." ";

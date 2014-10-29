@@ -34,7 +34,7 @@
                     echo "<div class='product_box'>
                         <h3 class='product_name'>".$row['name']."</h3>
                         <a href='catalog.php?itemid=".$row['itemid']."'>
-                            <img src='img/".$row['pictureurl']."' width='200px' alt='image' />
+                            <img src='images/".$row['pictureurl']."' width='200px' alt='image' />
                         </a>
                         <p>".$row['description']."</p>
                         <div class='price'>PRICE:<span>$".sprintf('%01.2f', $row['price'])."</span></div>                           

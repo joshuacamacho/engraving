@@ -4,7 +4,7 @@
 		header("Location: index.php");
 	}
 	include("header.php");
-	echo "<div id='content'>";
+	echo "<div id='content'><div id='content_left'>";
 	$userid=$_SESSION['userid'];
 
 		if( isset($_POST['itemid']) && isset($_POST['quantity']) &&isset($_POST['engravetext'])){
@@ -31,7 +31,7 @@
 			while($itemrow=mysqli_fetch_array($itemresult)){
 				echo "<div class='shoppingcartitem'>";
 				echo "<p>".$itemrow['name']."</p>";
-				echo "<img src='img/".$itemrow['pictureurl']."' width='60px'>";
+				echo "<img src='images/".$itemrow['pictureurl']."' width='60px'>";
 				echo $itemrow['description'];
 				echo $row['text'];
 				echo "Quantity: ".$row['quantity']." ";
@@ -51,6 +51,7 @@
 		$row=mysqli_fetch_row($result);
 		if($row[0]==0){
 			echo "Your shopping cart is empty.";
+			echo "</div></div>";
 		}else{
 			echo "Grandtotal = $".sprintf('%01.2f', $grandtotal);
 			echo "<h2><a href='checkout.php'>Proceed to checkout</a></h2>";
