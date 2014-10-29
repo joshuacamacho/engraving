@@ -46,6 +46,9 @@
 			}else if(isset($_SESSION['userid']) && $row['stocklevel']=='No longer sold'){
 				echo "This item is no longer sold";
 			}
+			if(!loggedin()){
+				echo "Login or <a href='register.php'>Register</a> to purchase";
+			}
 	}
 	}else{//no get set display full catalog
 		//pagination
