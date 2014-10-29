@@ -226,7 +226,7 @@ function printorders($userid,$link){
 
 	function onDashboard(){
 		$dash=false;
-		if (preg_match("/dashboard/", $_SERVER['REQUEST_URI'])) {
+		if (preg_match("/dashboard/", $_SERVER['REQUEST_URI']) && isAdmin()) {
 			$dash=true;
 		}
 		return $dash;

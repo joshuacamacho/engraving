@@ -30,8 +30,20 @@
     
    	  <div id="content_left">
         	<?php 
-        		echo "Order for ";
-        		echo "<div>".$userinfo['firstname']." ".$userinfo['lastname']."</div>";
+        		echo "<h4>Order for Customer</h4>";
+        		echo "
+					<h2>".$userinfo['firstname']." ".$userinfo['lastname']."</h2>
+					<h3>".$iteminfo['name']."</h3>
+					<h3>Engraved Text</h3>
+					<div>".$orderinfo['text']."</div>
+					<h4>Quantitiy: ".$orderinfo['quantity']."</h4>
+					<h4>Total Price: $".$orderinfo['totalprice']."</h4>
+				
+				
+				
+				
+				";
+				
         	?>
 
              
