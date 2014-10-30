@@ -329,7 +329,7 @@ function printorders($userid,$link){
 	}
 
 	function displayCatalog($link){
-		$query="SELECT * FROM items";
+		$query="SELECT * FROM items WHERE deleted='0'";
 		$result=$link->query($query);
 
 		echo "<h1><a href='./?mode=catalog&add=new'>Add New</a></h1>";

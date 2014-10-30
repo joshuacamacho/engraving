@@ -28,7 +28,7 @@
              <h2 id="label">New Products</h2>
 
              <?php 
-                $query=("SELECT * FROM items WHERE stocklevel='In Stock'");
+                $query=("SELECT * FROM items WHERE stocklevel='In Stock' ORDER BY itemid DESC LIMIT 4");
                 $result=$link->query($query);
                 while($row=mysqli_fetch_assoc($result)){
                     echo "<div class='product_box'>

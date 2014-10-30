@@ -61,6 +61,17 @@
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['id']) ){
 
 						$itemid=htmlentities(mysqli_real_escape_string($link,$_GET['id']));
+						
+					//for deleting items
+					if(isset($_POST['deleteditem'])){
+						$query="UPDATE items SET deleted='1' WHERE itemid='".$itemid."'";
+						$delete=$link->query($query);
+						echo "<script>
+						window.location.replace('./?mode=catalog');
+						
+						</script>";
+					}
+						
 					//for updating item details
 						if( (isset($_POST['name']) || isset($_POST['description']) || isset($_POST['price']))
 							&& ( (!empty($_POST['name'])) || (!empty($_POST['description'])) || (!empty($_POST['price'])))
@@ -96,7 +107,7 @@
 							if(isset($_POST['stocklevel'])){
 								$itemid=htmlentities(mysqli_real_escape_string($link,$_GET['id']));
 								$level=$_POST['stocklevel'];
-								$query="UPDATE items SET stocklevel='".$level."' WHERE itemid='".$itemid."'";
+								$query="UPDATE items SET stocklevel='".$level."', stocklevel='No longer sold' WHERE itemid='".$itemid."'";
 								$result=$link->query($query);
 							}
 
@@ -142,6 +153,14 @@
 									<li>No longer sold - Does not show in catalog and users cannot order</li>
 								</ul>
 						";
+						
+						echo "
+							<form action='./?mode=catalog&id=".$itemid."' method='post'>
+								<input type='checkbox' name='deleteditem' value='true'>Deletes cannot be undone. To delete item check this box and submit.
+								<input type='submit' value='Delete Item'>
+								
+							</form>				
+						";
 					}
 
 				}else if(isset($_GET['mode']) && $_GET['mode']=='catalog' && isset($_GET['add'])){
@@ -160,18 +179,23 @@
 						$query="INSERT INTO items (name,description,price) VALUES ('".$name."','".$description."','".$price."')";
 						$result=$link->query($query);
 
+					echo "<script>
+						window.location.replace('./?mode=catalog');
 						
+						</script>";
 						
 
 					}else{
 						echo "<h3>ADD NEW CATALOG ITEM</h3>";
 						echo "<form action='./?mode=catalog&add=new' method='post'>";
-						echo "<h1>Item Name</h1>
+						echo "<h2>Item Name</h2>
 									<input type=text name='itemname'>
-									<h1>Description</h1>
+									<h2>Description</h2>
 									<textarea name='itemdescription'></textarea>
-									<h1>Price</h1>
+									<h2>Price</h2>
 									<input type='text' name='itemprice'>
+									<h2>Picture</h2>
+									<input type='file'>
 									<input type='submit'>";
 						echo "</form>
 						";

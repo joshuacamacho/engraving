@@ -58,7 +58,7 @@
 		//total row count
 		$rows=$row[0];
 		//the number of results displayed per page
-		$page_rows = 6;
+		$page_rows = 8;
 		// this is the page number of our last page
 		$last=ceil($rows/$page_rows);
 		// makes sure last cannot be less than one
