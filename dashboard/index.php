@@ -154,9 +154,9 @@
 						&& isset($_POST['itemprice'])
 						&& !empty($_POST['itemprice'])
 						){
-						$name=mysql_real_escape_string(htmlentities($_POST['itemname']));
-						$description=mysql_real_escape_string(htmlentities($_POST['itemdescription']));
-						$price=mysql_real_escape_string(htmlentities($_POST['itemprice']));
+						$name=mysqli_real_escape_string($link,htmlentities($_POST['itemname']));
+						$description=mysqli_real_escape_string($link,htmlentities($_POST['itemdescription']));
+						$price=mysqli_real_escape_string($link,htmlentities($_POST['itemprice']));
 						$query="INSERT INTO items (name,description,price) VALUES ('".$name."','".$description."','".$price."')";
 						$result=$link->query($query);
 
