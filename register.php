@@ -161,7 +161,7 @@
 
 
 			 if($allvalid){
-				 echo "Registered";
+				 //echo "Registered";
 				 $date= date("Y-m-d H:i:s");
 				 $query="INSERT INTO users (firstname,lastname,email,password,datejoined) VALUES ('".$firstname."','".$lastname."','".$email."','".$password."','".$date."')";
 				 $result=$link->query($query);
@@ -229,7 +229,7 @@
 		}
 	}else{
 		//if email is invalid form
-		$allvalid=true;
+		$isinvalid=true;
 		$invalid.="<li>Incorrect email form</li>";
 
 	}
@@ -251,24 +251,27 @@
 
 	
 	
-	?>
 	
-	
+	if(!$allvalid){
+	echo '
 	<h2 id="label">Create User Account</h2>
    <div class="form_settings">
 	<p>Fill out all Required Areas indicated with (*)</p>
     <form action="register.php" onsubmit="return validateForm()" method="post" name="contForm">
 	
     <p>*First Name: 
-      <input name="firstname" type="text" size="50" maxlength="33" 
-	  <?php if($isinvalid && isset($postfirstname) && !empty($postfirstname)) echo "value='".$postfirstname."' "; ?> /></p>
+      <input name="firstname" type="text" size="50" maxlength="33" ';
+	  if($isinvalid && isset($postfirstname) && !empty($postfirstname)) echo "value='".$postfirstname."' "; 
+	  echo ' /></p>
 	<p>*Last Name: 
-		<input name="lastname" type="text" size="50" maxlength="33" 
-	    <?php if($isinvalid && isset($postlastname) && !empty($postlastname)) echo "value='".$postlastname."' "; ?>
+		<input name="lastname" type="text" size="50" maxlength="33"' ;
+	  if($isinvalid && isset($postlastname) && !empty($postlastname)) echo "value='".$postlastname."' "; 
+	  echo '
 		/></p>
     <p>*E-mail: 
-		<input name="regemail" type="text" size="50" maxlength="50" 
-		<?php if($isinvalid && isset($postemail) && !empty($postemail)) echo "value='".$postemail."' "; ?>
+		<input name="regemail" type="text" size="50" maxlength="50"'; 
+		if($isinvalid && isset($postemail) && !empty($postemail)) echo "value='".$postemail."' "; 
+		echo '
 		/></p>
     <p>*Password: 
 		<input name="regpassword" size="50" maxlength="50" type="password" />
@@ -279,8 +282,11 @@
 	<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="submit" value="submit" /></p>
 	<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="reset" name="reset" value="clear form" /></p>
         	</form>
-	
-	
+	';
+}else{
+	echo "<h2>Registered! Please log in</h2>";
+}
+	?>
 	
 	
 	</div></div>
