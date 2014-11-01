@@ -66,12 +66,27 @@
 					if(isset($_POST['deleteditem'])){
 						$query="UPDATE items SET deleted='1' WHERE itemid='".$itemid."'";
 						$delete=$link->query($query);
-						echo "<script>
-						window.location.replace('./?mode=catalog');
-						
-						</script>";
+						echo "<script>window.location.replace('./?mode=catalog');</script>";
 					}
 						
+					//for updating item picture
+
+					if(isset($_FILES['uploadedfile']['name']) && !empty($_FILES['uploadedfile']['name'])){
+						$target_path = "../images/";
+
+						$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+						$url=$_FILES['uploadedfile']['name'];
+						if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+						    $query="UPDATE items SET pictureurl='".$url."' WHERE itemid='".$itemid."'";
+								$result=$link->query($query);
+								
+						} else{
+						    echo "There was an error uploading the file, please try again!";
+						}
+
+					}
+
+
 					//for updating item details
 						if( (isset($_POST['name']) || isset($_POST['description']) || isset($_POST['price']))
 							&& ( (!empty($_POST['name'])) || (!empty($_POST['description'])) || (!empty($_POST['price'])))
@@ -118,7 +133,10 @@
 						while($row=mysqli_fetch_array($result)){
 							echo "<h1>".$row['name']."</h1>";
 							echo "<div class='catalogitemcontainer'><div><img src='../images/".$row['pictureurl']."'>";
-							echo "<form action='./?mode=catalog&id=".$itemid."' method='post'><input type='file'><input type='submit' value='Update Picture'></form></div>";
+							echo "<form enctype='multipart/form-data' action='./?mode=catalog&id=".$itemid."' method='post'>
+							<input type='hidden' name='MAX_FILE_SIZE' value='100000' />
+							<input name='uploadedfile' type='file'>
+							<input type='submit' value='Update Picture'></form></div>";
 
 
 
@@ -173,10 +191,23 @@
 						&& isset($_POST['itemprice'])
 						&& !empty($_POST['itemprice'])
 						){
+
+						$target_path = "../images/";
+
+						$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+
+						if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+						    echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
+						    " has been uploaded";
+						} else{
+						    echo "There was an error uploading the file, please try again!";
+						}
+
+						$pictureurl=basename( $_FILES['uploadedfile']['name']);
 						$name=mysqli_real_escape_string($link,htmlentities($_POST['itemname']));
 						$description=mysqli_real_escape_string($link,htmlentities($_POST['itemdescription']));
 						$price=mysqli_real_escape_string($link,htmlentities($_POST['itemprice']));
-						$query="INSERT INTO items (name,description,price) VALUES ('".$name."','".$description."','".$price."')";
+						$query="INSERT INTO items (name,description,price,pictureurl) VALUES ('".$name."','".$description."','".$price."','".$pictureurl."')";
 						$result=$link->query($query);
 
 					echo "<script>
@@ -187,7 +218,7 @@
 
 					}else{
 						echo "<h3>ADD NEW CATALOG ITEM</h3>";
-						echo "<form action='./?mode=catalog&add=new' method='post'>";
+						echo "<form enctype='multipart/form-data' action='./?mode=catalog&add=new' method='post'>";
 						echo "<h2>Item Name</h2>
 									<input type=text name='itemname'>
 									<h2>Description</h2>
@@ -195,10 +226,11 @@
 									<h2>Price</h2>
 									<input type='text' name='itemprice'>
 									<h2>Picture</h2>
-									<input type='file'>
-									<input type='submit'>";
-						echo "</form>
-						";
+									";
+						echo '<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+									<input name="uploadedfile" type="file" /><br />';
+					 	echo "<input type='submit'>";
+						echo "</form>";
 					}
 				}//end catalog add mode
 						

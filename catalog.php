@@ -52,13 +52,13 @@
 	}
 	}else{//no get set display full catalog
 		//pagination
-		$query="SELECT COUNT(itemid) FROM items WHERE stocklevel='In Stock' OR stocklevel='Out of Stock'";
+		$query="SELECT COUNT(itemid) FROM items WHERE stocklevel='In Stock' OR stocklevel='Out of Stock' AND deleted='0'";
 		$result=$link->query($query);
 		$row=mysqli_fetch_row($result);
 		//total row count
 		$rows=$row[0];
 		//the number of results displayed per page
-		$page_rows = 8;
+		$page_rows = 9;
 		// this is the page number of our last page
 		$last=ceil($rows/$page_rows);
 		// makes sure last cannot be less than one
@@ -78,7 +78,7 @@
 		$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
 
-		$query="SELECT * FROM items $limit";
+		$query="SELECT * FROM items WHERE deleted='0' $limit";
 		$result=$link->query($query);
 
 		//pagination controls
