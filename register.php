@@ -117,6 +117,7 @@
 
 <?php
 	$isinvalid=false;
+	$allvalid=false;
 	$invalid="";
 	if(
 		isset($_POST['firstname']) && !empty($_POST['firstname']) &&
@@ -130,24 +131,25 @@
 			$email=htmlentities(mysqli_real_escape_string($link,$_POST['regemail']));
 			$password=sha1(htmlentities(mysqli_real_escape_string($link,$_POST['regpassword'])));
 
-			$allvalid=true;
+			
 			
 			if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 				//IF EMAIL is valid form
 				
-				$query="SELECT email FROM users WHERE email='".$email."'";
+				$query="SELECT COUNT(*) FROM users WHERE email='".$email."'";
 				$result=$link->query($query);
 				$row=$result->fetch_array();
-				
+				//echo var_dump($row);
 
-				if(count($row)>0){
+				if($row[0]>0){
 					//if email exists
 					$allvalid=false;
 					//$invalid.=" This email already exists.";
 				}
 				else{
 					//if email is unique and valid form
-					 
+					 //echo "was valid";
+					$allvalid=true;
 				}
 			}else{
 				//if email is invalid form
@@ -158,22 +160,22 @@
 
 
 
-		 if($allvalid){
-			 echo "Registered";
-			 $date= date("Y-m-d H:i:s");
-			 $query="INSERT INTO users (firstname,lastname,email,password,datejoined) VALUES ('".$firstname."','".$lastname."','".$email."','".$password."','".$date."')";
-			 $result=$link->query($query);
-			 if (!$result) {
-			 $message  = 'Invalid query: ' . mysql_error() . "\n";
-		   $message .= 'Whole query: ' . $query;
-		   die($message);
-		 	 }
-			 
-			 $isinvalid=false;
-		}else{
-			$isinvalid=true;
-			
-		}
+			 if($allvalid){
+				 echo "Registered";
+				 $date= date("Y-m-d H:i:s");
+				 $query="INSERT INTO users (firstname,lastname,email,password,datejoined) VALUES ('".$firstname."','".$lastname."','".$email."','".$password."','".$date."')";
+				 $result=$link->query($query);
+				 if (!$result) {
+				 $message  = 'Invalid query: ' . mysql_error() . "\n";
+			   $message .= 'Whole query: ' . $query;
+			   die($message);
+			 	 }
+				 
+				 $isinvalid=false;
+			}else{
+				$isinvalid=true;
+				
+			}
 
 			
 	}
@@ -206,17 +208,17 @@
 		$invalid .= "<li>Missing Password</li>";
 	}
 	
-	if(isset($_POST['regemail']) && !empty($_POST['regemail'])){
+	if(isset($_POST['regemail']) && !empty($_POST['regemail']) && !$allvalid){
 		$email=mysqli_real_escape_string($link,$_POST['regemail']);
 		if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 		//IF EMAIL is valid form
 		
-		$query="SELECT email FROM users WHERE email='".$email."'";
+		$query="SELECT COUNT(*) FROM users WHERE email='".$email."'";
 		$result=$link->query($query);
 		$row=$result->fetch_array();
 		
 
-		if(count($row)>0){
+		if($row[0]>0){
 			//if email exists
 			$isinvalid=true;
 			$invalid.="<li>This email already exists</li>";
@@ -246,7 +248,7 @@
 		echo "<ul>".$invalid."</ul>";
 		
 	}
-	
+
 	
 	
 	?>
