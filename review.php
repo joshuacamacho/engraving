@@ -28,6 +28,45 @@
 			<script type="text/javascript">
 				//get info from form
 				var $_GET=getFormInfo(location.href);
+				
+				//	Fix the comment content
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("+"," ");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%3F","?");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%21","!");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%25","%");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%24","$");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%26","&");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%27","'");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%2C",",");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%2D","-");
+				}
+				for(var i=0;i<$_GET['Comments'].length;i++){
+					$_GET['Comments']=$_GET['Comments'].replace("%2E",".");
+				}
+				
+				//	Fix the phone number
+				$_GET['Phone']=$_GET['Phone'].replace("%28","(");
+				$_GET['Phone']=$_GET['Phone'].replace("%29",")");
+				$_GET['Phone']=$_GET['Phone'].replace("+"," ");
+				
+				//	Output the submitted data
 				document.write('<div style="background-color:rgba(0,0,0,0.7)"><span id="whiteA">INFORMATION SUBMITTED</span><br/><br/>');
 				for(var name in $_GET){
 					document.write('<span id="whiteA">'+name+': '+$_GET[name]+'</span><br/>');	
@@ -42,10 +81,10 @@
 				$co=$_GET['Comments'];
 			?>
 			<form name="" id="" action="mailto:contact@company.com" method="post" >
-				<input type="text" value="<?php echo $fn;?>" />
+				<input type="hidden" value="<?php echo $fn;?>" />
 				<input type="hidden" value="<?php echo $ln;?>" />
 				<input type="hidden" value="<?php echo $ph;?>" />
-				<input type="text" value="<?php echo $em;?>" />
+				<input type="hidden" value="<?php echo $em;?>" />
 				<input type="hidden" value="<?php echo $co;?>" />
 				<br>
 				<input type="submit" value="Send Email" />
