@@ -38,7 +38,7 @@
 		
 			function Validate_Email(){
 				var x = document.forms["contForm"]["Email"].value;
-				var re = new RegExp(/^\s*((.*\d)?(.*[a-z])?.{5,20})[@][a-z]{4,15}[.][a-z]{2,4}([.][a-z]{2,4})?\s*$/);
+				var re = new RegExp(/^\s*((.*\d)?(.*[a-z])?.{1,20})[@][a-z]{1,15}[.][a-z]{2,4}([.][a-z]{2,4})?\s*$/);
 				var m = re.exec(x);
 				if (m==null){
 					alert("Please, enter the correct email!");
