@@ -76,7 +76,7 @@
             
             <div class="form_settings">
 	<p>Fill out all Required Areas indicated with (*)
-        <form action="mailto:contact@company.com" onsubmit="return validateForm()" method="get" name="contForm">
+        <form action="review.php" onsubmit="return validateForm()" method="get" name="contForm">
 	
     <p>*First Name: 
       <input name="First_Name" type="text" size="45" maxlength="33" /></p>
