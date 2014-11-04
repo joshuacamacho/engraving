@@ -26,10 +26,10 @@
 	
 	function Validate_Phone(){
 		var x = document.forms["contForm"]["Phone"].value;
-		var re = new RegExp(/^\s*([(])?(([2][0][1-9])|([2][1-9][0-9])|([3-8][0-9][0-9])|([9][0-8][0-9]))([)\s])?([2-9][0-9]{2})[-\s]?([0-9]{4})\s*$/g);
+		var re = new RegExp(/^\s*([(\s])?(([2][0][1-9])|([2][1-9][0-9])|([3-8][0-9][0-9])|([9][0-8][0-9]))([-\s|)\s])?(\s)?([2-9][0-9]{2})([-\s])?([0-9]{4})\s*$/g);
 		var m = re.exec(x);
 		if (m==null){
-			alert("Please, enter a phone number in the form of (###) ###-####!");
+			alert("Please, enter a valid 10-digit US phone number in the format of ########## or ###-###-####!");
 			return false;
 		}else{
 			return true;
