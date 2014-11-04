@@ -43,7 +43,16 @@
 				$_GET[field]=$_GET[field].replace("%3E",">");
 				$_GET[field]=$_GET[field].replace("%3F","?");
 				$_GET[field]=$_GET[field].replace("%40","@");
+				$_GET[field]=$_GET[field].replace("%5B","[");
+				$_GET[field]=$_GET[field].replace("%5C","\\");
+				$_GET[field]=$_GET[field].replace("%5D","]");
+				$_GET[field]=$_GET[field].replace("%5E","^");
 				$_GET[field]=$_GET[field].replace("%5F","_");
+				$_GET[field]=$_GET[field].replace("%60","`");
+				$_GET[field]=$_GET[field].replace("%7B","{");
+				$_GET[field]=$_GET[field].replace("%7C","|");
+				$_GET[field]=$_GET[field].replace("%7D","}");
+				$_GET[field]=$_GET[field].replace("%7E","~");
 			}
 		}	
 	</script>
