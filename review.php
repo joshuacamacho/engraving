@@ -11,12 +11,41 @@
 			var obj=new Object();
 			for(var i=0;i<nameValuePairs.length-1;i++){
 				var map=nameValuePairs[i].split("=");
-				name=map[0];
+				name=map[0].replace("_"," ");	// Removes the underscore "_" from the 'name'
 				value=map[1];
-				obj[name]=value.replace("%40","@");	//replaces '%40' with '@'
+				obj[name]=value;
 			}
 			return obj;
-		}
+		}	
+		function adjustCharacters(field){
+			for(var i=0;i<$_GET[field].length;i++){
+				$_GET[field]=$_GET[field].replace("+"," ");
+				$_GET[field]=$_GET[field].replace("%20"," ");
+				$_GET[field]=$_GET[field].replace("%21","!");
+				$_GET[field]=$_GET[field].replace("%22","\"");
+				$_GET[field]=$_GET[field].replace("%23","#");
+				$_GET[field]=$_GET[field].replace("%24","$");
+				$_GET[field]=$_GET[field].replace("%25","%");
+				$_GET[field]=$_GET[field].replace("%26","&");
+				$_GET[field]=$_GET[field].replace("%27","'");
+				$_GET[field]=$_GET[field].replace("%28","(");
+				$_GET[field]=$_GET[field].replace("%29",")");
+				$_GET[field]=$_GET[field].replace("%2A","*");
+				$_GET[field]=$_GET[field].replace("%2B","+");
+				$_GET[field]=$_GET[field].replace("%2C",",");
+				$_GET[field]=$_GET[field].replace("%2D","-");
+				$_GET[field]=$_GET[field].replace("%2E",".");
+				$_GET[field]=$_GET[field].replace("%2F","/");
+				$_GET[field]=$_GET[field].replace("%3A",":");
+				$_GET[field]=$_GET[field].replace("%3B",";");
+				$_GET[field]=$_GET[field].replace("%3C","<");
+				$_GET[field]=$_GET[field].replace("%3D","=");
+				$_GET[field]=$_GET[field].replace("%3E",">");
+				$_GET[field]=$_GET[field].replace("%3F","?");
+				$_GET[field]=$_GET[field].replace("%40","@");
+				$_GET[field]=$_GET[field].replace("%5F","_");
+			}
+		}	
 	</script>
 
 
@@ -24,47 +53,17 @@
     
 		<div id="content_left">
           
-			<h1>"HOWDY!"</h1>
 			<script type="text/javascript">
 				//get info from form
 				var $_GET=getFormInfo(location.href);
 				
-				//	Fix the comment content
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("+"," ");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%3F","?");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%21","!");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%25","%");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%24","$");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%26","&");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%27","'");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%2C",",");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%2D","-");
-				}
-				for(var i=0;i<$_GET['Comments'].length;i++){
-					$_GET['Comments']=$_GET['Comments'].replace("%2E",".");
-				}
+				//	Fix the characters
+				adjustCharacters('First Name');
+				adjustCharacters('Last Name');
+				adjustCharacters('Email');
+				adjustCharacters('Phone');
+				adjustCharacters('Comments');
 				
-				//	Fix the phone number
-				$_GET['Phone']=$_GET['Phone'].replace("%28","(");
-				$_GET['Phone']=$_GET['Phone'].replace("%29",")");
-				$_GET['Phone']=$_GET['Phone'].replace("+"," ");
 				
 				//	Output the submitted data
 				document.write('<div style="background-color:rgba(0,0,0,0.7)"><span id="whiteA">INFORMATION SUBMITTED</span><br/><br/>');
