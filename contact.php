@@ -1,60 +1,60 @@
 <?php include_once("header.php") ?>
 <!--Validation Functions-->
-		<head><script>
-			function Validate_First_Name(){
-				var x = document.forms["contForm"]["First_Name"].value;
-				var re = new RegExp(/^\s*([A-Z][a-z]{1,}|[A-Z][a-z]{1,}([A-Z][a-z])?)([A-Z][a-z]{1,})?(([-\s][A-Z][a-z]{1,})|([A-Z][a-z]{1,}))?\s*$/);
-				var m = re.exec(x);//m is for 'match'
-				if (m==null){
-					alert("Sorry, your first name was not entered correctly, please try again!");
-					return false;
-				}else{
-					return true;
-				}
-			}
-			function Validate_Last_Name(){
-				var x = document.forms["contForm"]["Last_Name"].value;
-				var re = new RegExp(/^\s*(([A-Z][a-z]{1,15})([-][A-Z][a-z]{1,15})?.*(\s+[A-Z][a-z]{1,10})?|([A-Z][a-z'][a-zA-Z][a-z]{1,15}))\s*$/);
-				var m = re.exec(x);
-				if (m==null){
-					alert("Sorry, your last name was not entered correctly, please try again!");
-					return false;
-				}else{
-					return true;
-				}
-			}
-			
-			function Validate_Phone(){
-				var x = document.forms["contForm"]["Phone"].value;
-				var re = new RegExp(/^\s*([(\s])?[1-9][0-9]{2}[-\s|)\s](\s)?[1-9][0-9]{2}[-\s][0-9]{4}\s*$/);
-				var m = re.exec(x);
-				if (m==null){
-					alert("Please, enter a phone number in the form of (###) ###-####!");
-					return false;
-				}else{
-					return true;
-				}
-			}
-		
-			function Validate_Email(){
-				var x = document.forms["contForm"]["Email"].value;
-				var re = new RegExp(/^\s*((.*\d)?(.*[a-z])?.{1,20})[@][a-z]{1,15}[.][a-z]{2,4}([.][a-z]{2,4})?\s*$/);
-				var m = re.exec(x);
-				if (m==null){
-					alert("Please, enter a proper email!");
-					return false;
-				}else{
-					return true;
-				}
-			}
-			function validateForm(){
-				if(!Validate_First_Name())return false;
-				if(!Validate_Last_Name())return false;
-				if(!Validate_Phone())return false;
-				if(!Validate_Email())return false;
-				return true;
-			}
-		</script></head>
+<head><script>
+	function Validate_First_Name(){
+		var x = document.forms["contForm"]["First_Name"].value;
+		var re = new RegExp(/^\s*([A-Z][a-z]{1,}|[A-Z][a-z]{1,}([A-Z][a-z])?)([A-Z][a-z]{1,})?(([-\s][A-Z][a-z]{1,})|([A-Z][a-z]{1,}))?\s*$/);
+		var m = re.exec(x);//m is for 'match'
+		if (m==null){
+			alert("Sorry, your first name was not entered correctly, please try again!");
+			return false;
+		}else{
+			return true;
+		}
+	}
+	function Validate_Last_Name(){
+		var x = document.forms["contForm"]["Last_Name"].value;
+		var re = new RegExp(/^\s*(([A-Z][a-z]{1,15})([-][A-Z][a-z]{1,15})?.*(\s+[A-Z][a-z]{1,10})?|([A-Z][a-z'][a-zA-Z][a-z]{1,15}))\s*$/);
+		var m = re.exec(x);
+		if (m==null){
+			alert("Sorry, your last name was not entered correctly, please try again!");
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	function Validate_Phone(){
+		var x = document.forms["contForm"]["Phone"].value;
+		var re = new RegExp(/^\s*([(])?(([2][0][1-9])|([2][1-9][0-9])|([3-8][0-9][0-9])|([9][0-8][0-9]))([)\s])?([2-9][0-9]{2})[-\s]?([0-9]{4})\s*$/g);
+		var m = re.exec(x);
+		if (m==null){
+			alert("Please, enter a phone number in the form of (###) ###-####!");
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	function Validate_Email(){
+		var x = document.forms["contForm"]["Email"].value;
+		var re = new RegExp(/^\s*((.*\d)?(.*[a-z])?.{1,20})[@][a-z]{1,15}[.][a-z]{2,4}([.][a-z]{2,4})?\s*$/);
+		var m = re.exec(x);
+		if (m==null){
+			alert("Please, enter a proper email!");
+			return false;
+		}else{
+			return true;
+		}
+	}
+	function validateForm(){
+		if(!Validate_First_Name())return false;
+		if(!Validate_Last_Name())return false;
+		if(!Validate_Phone())return false;
+		if(!Validate_Email())return false;
+		return true;
+	}
+</script></head>
 
   <div id="content">
     

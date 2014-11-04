@@ -75,7 +75,7 @@
 				
 				
 				//	Output the submitted data
-				document.write('<div style="background-color:rgba(0,0,0,0.7)"><span id="whiteA">INFORMATION SUBMITTED</span><br/><br/>');
+				document.write('<div style="background-color:rgba(0,0,0,0.7)"><span id="whiteA">REVIEW YOUR EMAIL BEFORE SENDING</span><br/><br/>');
 				for(var name in $_GET){
 					document.write('<span id="whiteA">'+name+': '+$_GET[name]+'</span><br/>');	
 				}
@@ -95,9 +95,12 @@
 				<input type="hidden" value="<?php echo $em;?>" />
 				<input type="hidden" value="<?php echo $co;?>" />
 				<br>
-				<input type="submit" value="Send Email" />
+				<button type="submit">Send Email</button>
+				&nbsp;
+				
+				<!-- 'Edit Email' button needs a function to refill the form -->
+				<a href="contact.php"><button type="button">Edit Email</button></a>
 			</form>
-				<a href="contact.php"><button onclick="">Edit Email</button></a>
 			
 		</div> <!-- end of content right-->
         
