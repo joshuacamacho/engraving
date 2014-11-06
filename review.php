@@ -88,18 +88,35 @@
 				$em=$_GET['Email'];
 				$co=$_GET['Comments'];
 			?>
-			<form name="" id="" action="mailto:contact@company.com" method="post" >
+			
+			<!-- Sends the email -->
+			<form name="" id="" action="mailto:contact@company.com" >
 				<input type="hidden" value="<?php echo $fn;?>" />
 				<input type="hidden" value="<?php echo $ln;?>" />
 				<input type="hidden" value="<?php echo $ph;?>" />
 				<input type="hidden" value="<?php echo $em;?>" />
 				<input type="hidden" value="<?php echo $co;?>" />
 				<br>
-				<button type="submit">Send Email</button>
-				&nbsp;
-				
-				<!-- 'Edit Email' button needs a function to refill the form -->
-				<a href="contact.php"><button type="button">Edit Email</button></a>
+				<input type="submit" value="Send Email" />
+			</form>
+			
+			<?php
+				$rfn=$_GET['First_Name'];
+				$rln=$_GET['Last_Name'];
+				$rph=$_GET['Phone'];
+				$rem=$_GET['Email'];
+				$rco=$_GET['Comments'];
+			?>
+			
+			<!-- Goes back to the contact page -->
+			<form name="" id="" action="contact.php" method="get" > <!-- Why wont this 'get' method work! -->
+				<input type="hidden" value="<?php echo $rfn;?>" />
+				<input type="hidden" value="<?php echo $rln;?>" />
+				<input type="hidden" value="<?php echo $rph;?>" />
+				<input type="hidden" value="<?php echo $rem;?>" />
+				<input type="hidden" value="<?php echo $rco;?>" />
+				<br>
+				<input type="submit" value="Edit Email" />
 			</form>
 			
 		</div> <!-- end of content right-->
