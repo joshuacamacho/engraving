@@ -90,13 +90,12 @@
 				$co=$_GET['Comments'];
 			?>
 			<!-- Sends the email -->
-			<!-- The 'contact.php' page wont load... WHY! -->
-			<form name="send" id="send" onsubmit="contact.php" action="mailto:contact@company.com" method="post" >
-				<input type="hidden" value="<?php echo $fn;?>" />
-				<input type="hidden" value="<?php echo $ln;?>" />
-				<input type="hidden" value="<?php echo $ph;?>" />
-				<input type="hidden" value="<?php echo $em;?>" />
-				<input type="hidden" value="<?php echo $co;?>" />
+			<form name="send" id="send" action="mailto:contact@company.com" method="post" >
+				<input type="hidden" name="First_Name" value="<?php echo $fn;?>" />
+				<input type="hidden" name="Last_Name" value="<?php echo $ln;?>" />
+				<input type="hidden" name="Phone" value="<?php echo $ph;?>" />
+				<input type="hidden" name="Email" value="<?php echo $em;?>" />
+				<input type="hidden" name="Comments" value="<?php echo $co;?>" />
 				<br>
 				<input type="submit" value="Send Email" />
 			</form>
@@ -109,13 +108,12 @@
 				$rco=$_GET['Comments'];
 			?>
 			<!-- Goes back to the contact page -->
-			<!-- The 'get' method is not working... WHY! -->
 			<form name="edit" id="edit" action="contact.php" method="get" > 
-				<input type="hidden" value="<?php echo $rfn;?>" />
-				<input type="hidden" value="<?php echo $rln;?>" />
-				<input type="hidden" value="<?php echo $rph;?>" />
-				<input type="hidden" value="<?php echo $rem;?>" />
-				<input type="hidden" value="<?php echo $rco;?>" />
+				<input type="hidden" name="First_Name" value="<?php echo $rfn;?>" />
+				<input type="hidden" name="Last_Name" value="<?php echo $rln;?>" />
+				<input type="hidden" name="Phone" value="<?php echo $rph;?>" />
+				<input type="hidden" name="Email" value="<?php echo $rem;?>" />
+				<input type="hidden" name="Comments" value="<?php echo $rco;?>" />
 				<br>
 				<input type="submit" value="Edit Email" />
 			</form>

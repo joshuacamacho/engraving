@@ -130,7 +130,7 @@
 			<?php
 				//	Clean up variables if not being used.
 				//	These values should be passes back from the 'review.php' using the 'Edit Email' button.
-				if($_GET != NULL){
+				if(isset($_GET) && $_GET != NULL){
 					$fn=$_GET['First_Name'];
 					$ln=$_GET['Last_Name'];
 					$ph=$_GET['Phone'];
