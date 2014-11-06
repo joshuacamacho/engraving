@@ -81,6 +81,7 @@
 				}
 				document.write('</div>');
 			</script>
+			<!-- set the variables for the 'send' form -->
 			<?php
 				$fn=$_GET['First_Name'];
 				$ln=$_GET['Last_Name'];
@@ -88,9 +89,9 @@
 				$em=$_GET['Email'];
 				$co=$_GET['Comments'];
 			?>
-			
 			<!-- Sends the email -->
-			<form name="" id="" action="mailto:contact@company.com" >
+			<!-- The 'contact.php' page wont load... WHY! -->
+			<form name="send" id="send" onsubmit="contact.php" action="mailto:contact@company.com" method="post" >
 				<input type="hidden" value="<?php echo $fn;?>" />
 				<input type="hidden" value="<?php echo $ln;?>" />
 				<input type="hidden" value="<?php echo $ph;?>" />
@@ -99,7 +100,7 @@
 				<br>
 				<input type="submit" value="Send Email" />
 			</form>
-			
+			<!-- set the variables for the 'edit' form -->
 			<?php
 				$rfn=$_GET['First_Name'];
 				$rln=$_GET['Last_Name'];
@@ -107,9 +108,9 @@
 				$rem=$_GET['Email'];
 				$rco=$_GET['Comments'];
 			?>
-			
 			<!-- Goes back to the contact page -->
-			<form name="" id="" action="contact.php" method="get" > <!-- Why wont this 'get' method work! -->
+			<!-- The 'get' method is not working... WHY! -->
+			<form name="edit" id="edit" action="contact.php" method="get" > 
 				<input type="hidden" value="<?php echo $rfn;?>" />
 				<input type="hidden" value="<?php echo $rln;?>" />
 				<input type="hidden" value="<?php echo $rph;?>" />
