@@ -118,6 +118,7 @@
 			<script type="text/javascript">
 				//get info from form
 				var $_GET=getFormInfo(location.href);
+				var body=$_GET['Comments'];
 				
 				//	Fix the characters
 				adjustCharacters('First Name');
@@ -156,7 +157,11 @@
             Diam a mollis tempor<br /><br />
             
 			<strong>Phone:</strong> (951) 555-5555<br />
-            <strong>Email:</strong> <a href="mailto:contact@company.com">contact@company.com</a><br />
+            <strong>Email:</strong>
+			<script>
+				var myEmail = "contact@company.com";	//	Replace with real company email.
+				document.write("<a href='mailto:"+myEmail+"?subject=Comments&body="+body+"'>"+myEmail+"</a><br />");
+			</script>
             
             <div class="form_settings">
 	<p>Fill out all Required Areas indicated with (*)
