@@ -71,18 +71,14 @@
 						
 					//for updating item picture
 
-					if(isset($_FILES['uploadedfile']['name']) && !empty($_FILES['uploadedfile']['name'])){
-						$target_path = "../images/";
-
-						$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
-						$url=$_FILES['uploadedfile']['name'];
-						if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+					if(isset($_POST['picturename']) && !empty($_POST['picturename'])){
+						
+						$url=htmlentities(mysqli_real_escape_string($link,$_POST['picturename']));
+						
 						    $query="UPDATE items SET pictureurl='".$url."' WHERE itemid='".$itemid."'";
-								$result=$link->query($query);
+							$result=$link->query($query);
 								
-						} else{
-						    echo "There was an error uploading the file, please try again!";
-						}
+						
 
 					}
 
@@ -133,10 +129,10 @@
 						while($row=mysqli_fetch_array($result)){
 							echo "<h1>".$row['name']."</h1>";
 							echo "<div class='catalogitemcontainer'><div><img src='../images/".$row['pictureurl']."'>";
-							echo "<form enctype='multipart/form-data' action='./?mode=catalog&id=".$itemid."' method='post'>
-							<input type='hidden' name='MAX_FILE_SIZE' value='100000' />
-							<input name='uploadedfile' type='file'>
-							<input type='submit' value='Update Picture'></form></div>";
+							echo "<form action='./?mode=catalog&id=".$itemid."' method='post'>
+							
+							<input name='picturename' type='text' value='".$row['pictureurl']."'>
+							<input type='submit' value='Update Picture Name'></form></div>";
 
 
 
@@ -190,20 +186,13 @@
 						&& !empty($_POST['itemdescription'])
 						&& isset($_POST['itemprice'])
 						&& !empty($_POST['itemprice'])
+						& isset($_POST['picturename'])
+						&& !empty($_POST['picturename'])
 						){
 
-						$target_path = "../images/";
+						
 
-						$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
-
-						if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
-						    echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
-						    " has been uploaded";
-						} else{
-						    echo "There was an error uploading the file, please try again!";
-						}
-
-						$pictureurl=basename( $_FILES['uploadedfile']['name']);
+						$pictureurl=mysqli_real_escape_string($link,htmlentities($_POST['picturename']));
 						$name=mysqli_real_escape_string($link,htmlentities($_POST['itemname']));
 						$description=mysqli_real_escape_string($link,htmlentities($_POST['itemdescription']));
 						$price=mysqli_real_escape_string($link,htmlentities($_POST['itemprice']));
@@ -220,15 +209,14 @@
 						echo "<h3>ADD NEW CATALOG ITEM</h3>";
 						echo "<form enctype='multipart/form-data' action='./?mode=catalog&add=new' method='post'>";
 						echo "<h2>Item Name</h2>
-									<input type=text name='itemname'>
+									<input type='text' name='itemname'>
 									<h2>Description</h2>
 									<textarea name='itemdescription'></textarea>
 									<h2>Price</h2>
 									<input type='text' name='itemprice'>
-									<h2>Picture</h2>
+									<h2>Picture Name</h2>
 									";
-						echo '<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-									<input name="uploadedfile" type="file" /><br />';
+						echo '<input name="picturename" type="text" /><br />';
 					 	echo "<input type='submit'>";
 						echo "</form>";
 					}
