@@ -163,27 +163,40 @@
 				document.write("<a href='mailto:"+myEmail+"?subject=Comments&body="+body+"'>"+myEmail+"</a><br />");
 			</script>
             
-            <div class="form_settings">
-	<p>Fill out all Required Areas indicated with (*)
-        <form action="review.php" onsubmit="return validateForm()" method="get" name="contForm">
+    <div class="form_settings">
+	<p>Fill out all Required Areas indicated with (*)</p>
+    <form action="review.php" onsubmit="return validateForm()" method="get" name="contForm">
 	
-    <p>*First Name: 
-      <input name="First_Name" type="text" size="45" maxlength="33" value="<?php echo $fn;?>"/></p>
-	<p>*Last Name: 
-		<input name="Last_Name" type="text" size="45" maxlength="33" value="<?php echo $ln;?>"/></p>
-    
-    <p>*Phone Number: 
-		<input name="Phone" size="45" maxlength="50" type="text" value="<?php echo $ph;?>"/>
+    <label>*First Name:</label>
+	<p>
+	<input name="First_Name" type="text" size="45" maxlength="33" value="<?php echo $fn;?>"/> 
+     </p>
+	
+	<label>*Last Name:</label>
+	<p>
+	<input name="Last_Name" type="text" size="45" maxlength="33" value="<?php echo $ln;?>"/>
 	</p>
-	<p>*E-mail: 
-		<input name="Email" type="text" size="45" maxlength="50" value="<?php echo $em;?>"/></p><br />
-        
-    <p>*Please leave your comments, questions or concerns here</p>
-    	<textarea name="Comments" id="Comments" cols="45" rows="5"><?php echo $co;?></textarea></p>
+	
+	<label>*Phone Number:</label>
+	<p>
+	<input name="Phone" size="45" maxlength="50" type="text" value="<?php echo $ph;?>"/>
+	</p>	
+    <label>*E-mail:</label>
+	<p>
+	<input name="Email" type="text" size="45" maxlength="50" value="<?php echo $em;?>"/>
+	</p><br /> 
+     
+	<p>*Please leave your comments, questions or concerns here</p>
+    <textarea name="Comments" id="Comments" cols="45" rows="5"><?php echo $co;?></textarea></p>
 	<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="submit" value="submit" /></p>
 	<p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="reset" name="reset" value="clear form" /></p>
     
-        	</form>
+    </form>	
+	
+	
+		
+        
+    
         
        </div> 
                 

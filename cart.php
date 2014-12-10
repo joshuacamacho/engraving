@@ -30,14 +30,14 @@
 			$itemresult=$link->query($itemquery);
 			while($itemrow=mysqli_fetch_array($itemresult)){
 				echo "<div class='shoppingcartitem'>";
-				echo "<p>".$itemrow['name']."</p>";
+				echo "<h2>".$itemrow['name']."</h2>";
 				echo "<img src='images/".$itemrow['pictureurl']."' width='60px'>";
-				echo $itemrow['description'];
-				echo $row['text'];
+				echo "<h3>" .$itemrow['description']. "</h3>";
+				echo "<p>" .$row['text']. "</p>";
 				echo "Quantity: ".$row['quantity']." ";
 				echo "Total Cost= $".sprintf('%01.2f', ($itemrow['price']*$row['quantity']));
 				$grandtotal+=$itemrow['price']*$row['quantity'];
-				echo "</div>";
+				
 			}
 			$cartid=$row['cartid'];
 			echo "<form action='cart.php' method='post'>
@@ -45,7 +45,7 @@
 							<input type='submit' value='Delete Item'>
 							</form>
 						";
-
+echo "</div>";
 		}
 		$result=$link->query("SELECT COUNT(cartid) FROM cart WHERE userid='".$userid."'");
 		$row=mysqli_fetch_row($result);
@@ -54,7 +54,7 @@
 			echo "</div></div>";
 		}else{
 			echo "Grandtotal = $".sprintf('%01.2f', $grandtotal);
-			echo "<h2><a href='checkout.php'>Proceed to checkout</a></h2>";
+			echo "<h3><a href='checkout.php'>Proceed to checkout</a></h3>";
 			echo "</div></div>";
 		}
 		include("footer.php");

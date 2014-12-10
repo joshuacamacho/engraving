@@ -5,16 +5,13 @@
 
 ?>
 
-<div id="slider">
-        <div id="slider-holder">
-          <ul>
-            <li><a href="#"><img src="images/slideshow.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="images/slideshow2.jpg" alt="" /></a></li>
-            <!--<li><a href="#"><img src="images/slideshow3.jpg" alt="" /></a></li>
-            <li><a href="#"><img src="images/slideshow4.jpg" alt="" /></a></li>-->
-          </ul>
+<div id="index">
+        <div id="indexdiv">
+          
+            <img src="images/slideshow.jpg" alt="" />
+          
         </div>
-        <div id="slider-nav"> <a href="#" class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> </div>
+        
 </div>
 
  <div id="content">

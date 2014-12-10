@@ -259,23 +259,28 @@
 	<p>Fill out all Required Areas indicated with (*)</p>
     <form action="register.php" onsubmit="return validateForm()" method="post" name="contForm">
 	
-    <p>*First Name: 
-      <input name="firstname" type="text" size="50" maxlength="33" ';
+    <label>*First Name:</label> 
+      <p>
+	  <input name="firstname" type="text" size="50" maxlength="33" ';
 	  if($isinvalid && isset($postfirstname) && !empty($postfirstname)) echo "value='".$postfirstname."' "; 
-	  echo ' /></p>
-	<p>*Last Name: 
+	  echo ' />
+	  </p>
+	<label>*Last Name:</label> 
+		<p>
 		<input name="lastname" type="text" size="50" maxlength="33"' ;
 	  if($isinvalid && isset($postlastname) && !empty($postlastname)) echo "value='".$postlastname."' "; 
-	  echo '
-		/></p>
-    <p>*E-mail: 
+	  echo ' />
+		</p>
+    <label>*E-mail:</label> 
+		<p>
 		<input name="regemail" type="text" size="50" maxlength="50"'; 
 		if($isinvalid && isset($postemail) && !empty($postemail)) echo "value='".$postemail."' "; 
-		echo '
-		/></p>
-    <p>*Password: 
+		echo ' />
+		</p>
+    <label>*Password:</label> 
+		<p>
 		<input name="regpassword" size="50" maxlength="50" type="password" />
-	</p>
+		</p>
 	
 				
      
