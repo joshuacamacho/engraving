@@ -521,7 +521,7 @@ margin-left:10px;
 	margin-bottom: 10px;/*moved styles from another .quantity*/
 }
 
-.remove a{
+#remove a{
 	clear: both;
 	display: block;
 	float: left;
@@ -537,15 +537,11 @@ margin-left:10px;
 }
 
 /*Item Styles*/
-.shoppingcartitem{
-
-
-padding: 10px 10px 15px 10px;
+#content_left .shoppingcartitem {
 
 float: left;
-clear: left;
-margin-right: 10px;
-margin-bottom:10px;
+	width: 200px;
+	margin-right: 10px;
 }
 
 .shoppingcartitem  h2 {
@@ -555,13 +551,15 @@ color: #333399;
 color: #73828E;
 }
 
-.shoppingcartitem img{
+#content_left .shoppingcartitem img{
 margin-bottom: 15px;
 
 }
 
+ .shoppingcartitem p {
 
-
+width: 50px;
+}
 
 #cke_editor1 { 
 	width:350px;
