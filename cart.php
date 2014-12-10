@@ -33,7 +33,7 @@
 				echo "<h2>".$itemrow['name']."</h2>";
 				echo "<img src='images/".$itemrow['pictureurl']."' width='60px'>";
 				echo "<h3>" .$itemrow['description']. "</h3>";
-				echo $row['text'];
+				echo "<div class='otext'>".$row['text']."</div>";
 				echo "Quantity: ".$row['quantity']." ";
 				echo "Total Cost= $".sprintf('%01.2f', ($itemrow['price']*$row['quantity']));
 				$grandtotal+=$itemrow['price']*$row['quantity'];
@@ -46,6 +46,7 @@
 							</form>
 						";
 			echo "</div>";
+			echo "<hr />";
 		}
 		$result=$link->query("SELECT COUNT(cartid) FROM cart WHERE userid='".$userid."'");
 		$row=mysqli_fetch_row($result);
