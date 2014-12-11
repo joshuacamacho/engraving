@@ -40,10 +40,10 @@
 			$itemresult=$link->query($itemquery);
 			while($itemrow=mysqli_fetch_array($itemresult)){
 				echo "<div class='shoppingcartitem'>";
-				echo "<p>".$itemrow['name']."</p>";
-				echo "<img src='images/".$itemrow['pictureurl']."' width='60px'>";
-				echo $itemrow['description'];
-				echo $row['text'];
+				echo "<h2>".$itemrow['name']."</h2>";
+				echo "<img src='images/".$itemrow['pictureurl']."'>";
+				echo "<h3>" .$itemrow['description']. "</h3>";
+				echo "<div class='otext'>".$row['text']."</div>";
 				echo " Quantity: ".$row['quantity']." ";
 				echo "Price $".sprintf('%01.2f', ($itemrow['price']*$row['quantity']));
 				echo "</div>";
@@ -51,7 +51,7 @@
 				$grandtotal+=$itemrow['price']*$row['quantity'];
 			}
 			
-			
+			echo "<hr />";
 			
 			}
 			echo "Grandtotal $".sprintf('%01.2f', $grandtotal);

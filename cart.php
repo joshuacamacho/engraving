@@ -11,7 +11,7 @@
 			$itemid=htmlentities(mysqli_real_escape_string($link,$_POST['itemid']));
 			$quantity=htmlentities(mysqli_real_escape_string($link,$_POST['quantity']));
 			$text=$_POST['engravetext'];
-			echo $text;
+			
 			$query="INSERT INTO cart (itemid,quantity,userid,text) VALUES ('".$itemid."','".$quantity."','".$userid."','".$text."')";
 			$result=$link->query($query);
 			echo "Item added to cart";
@@ -31,7 +31,7 @@
 			while($itemrow=mysqli_fetch_array($itemresult)){
 				echo "<div class='shoppingcartitem'>";
 				echo "<h2>".$itemrow['name']."</h2>";
-				echo "<img src='images/".$itemrow['pictureurl']."' width='60px'>";
+				echo "<img src='images/".$itemrow['pictureurl']."'>";
 				echo "<h3>" .$itemrow['description']. "</h3>";
 				echo "<div class='otext'>".$row['text']."</div>";
 				echo "Quantity: ".$row['quantity']." ";
@@ -42,7 +42,7 @@
 			$cartid=$row['cartid'];
 			echo "<form action='cart.php' method='post'>
 							<input type='hidden' name='cartid' value='".$cartid."'>
-							<input type='submit' value='Delete Item'>
+							<input class='remove' type='submit' value='Delete Item'>
 							</form>
 						";
 			echo "</div>";

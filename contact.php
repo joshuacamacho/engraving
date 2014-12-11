@@ -207,7 +207,7 @@
          
     	<!-- end of content left -->
         
-        <div id="content_right">
+       <div id="content_right">
         	<div class="right_section">
             	<h4 class="right_header">Search</h4>
                 <div class="right_section_content">
@@ -230,7 +230,7 @@
                        
                     </ul>
                 </div>
-            </div>
+            </div> 
 
             
         </div> <!-- end of content right-->

@@ -58,7 +58,7 @@ h1 {
 p {
 	margin: 0px;
 	padding: 0 0 10px 0;
-	text-align: justify;
+	
 }
 
 .price{
@@ -191,7 +191,7 @@ p {
   font-size: 14px;
   margin: auto auto auto 10px;
  position: absolute;
-    bottom: -35%;
+    bottom: -82%;
 	
   }
   .pagination a div:hover  {
@@ -322,6 +322,7 @@ p {
 	padding: 30px 30px 0 30px;
 	background-color: #2E2E2E;
 	overflow: hidden;
+	overflow: ellipsis;
 }
 
 #content #content_left {
@@ -337,6 +338,7 @@ p {
 
 #content_left .product_box img{
 	margin-bottom: 5px;
+	width: 200px;
 }
 
 #content #content_right {
@@ -484,6 +486,29 @@ margin-left:10px;
   text-shadow: 1px 1px #178497;
 }
 
+#submitreview  { 
+  font: 140% 'Yanone Kaffeesatz', arial, sans-serif; 
+  border: 0; 
+  width: 99px; 
+   
+  height: 33px;
+  padding: 2px 0 3px 0;
+  cursor: pointer; 
+  background: #1EC9F4; 
+  -webkit-border-radius: .5em .5em .5em .5em ; 
+  -moz-border-radius: .5em .5em .5em .5em ;
+  border-radius: .5em .5em .5em .5em ;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);  
+  color: #FFF;
+  border: solid 1px #0D8AA9;
+  background: #46C4DD;
+  background: -webkit-gradient(linear, left top, left bottom, from(#63CFDF), to(#17B2D9));
+  background: -moz-linear-gradient(top,  #63CFDF,  #17B2D9);
+  text-shadow: 1px 1px #178497;
+}
+
 .form_settings textarea, .form_settings select { 
   font: 100% arial; 
   width: 299px;
@@ -522,10 +547,10 @@ margin-left:10px;
 	margin-bottom: 10px;/*moved styles from another .quantity*/
 }
 
-#remove a{
+.remove {
 	clear: both;
 	display: block;
-	float: left;
+	
 	width: 80px;
 	padding: 1px 0;
 	margin: 0 15px 10px 0;
@@ -539,28 +564,37 @@ margin-left:10px;
 
 /*Item Styles*/
 #content_left .shoppingcartitem {
+background: #4C4C4C;
 
-/*float: left;*/
 	width: 100%;
 	margin-right: 10px;
+	padding: 10px 10px 10px 10px;
+	color: 	#7AA3CC;
 }
 
 .shoppingcartitem  h2 {
-color: #333399;
+color: #2E2E2E;
+background: #B5AFB3;
+width: 27%;
+padding: 3px 2px 3px 2px;
+text-align: center;
 }
 .shoppingcartitem  h3 {
-color: #73828E;
+color: #CCE6FF;
 }
 
 #content_left .shoppingcartitem img{
 margin-bottom: 15px;
+width:25%;
 
 }
+
 
  
 #content_left .shoppingcartitem .otext div p{
 width:95%;
 overflow: ellipsis;
+
 }
 #cke_editor1 { 
 	width:350px;

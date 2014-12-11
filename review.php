@@ -96,8 +96,9 @@
 				<input type="hidden" name="Phone" value="<?php echo $ph;?>" />
 				<input type="hidden" name="Email" value="<?php echo $em;?>" />
 				<input type="hidden" name="Comments" value="<?php echo $co;?>" />
-				<br>
-				<input type="submit" value="Send Email" />
+				<br />
+				<input id="submitreview" type="submit" value="Send Email" />
+				
 			</form>
 			<!-- set the variables for the 'edit' form -->
 			<?php
@@ -114,8 +115,8 @@
 				<input type="hidden" name="Phone" value="<?php echo $rph;?>" />
 				<input type="hidden" name="Email" value="<?php echo $rem;?>" />
 				<input type="hidden" name="Comments" value="<?php echo $rco;?>" />
-				<br>
-				<input type="submit" value="Edit Email" />
+				<br />
+				<input id="submitreview" type="submit" value="Edit Email" />
 			</form>
 			
 		</div> <!-- end of content right-->
